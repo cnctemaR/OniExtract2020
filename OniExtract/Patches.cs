@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -365,7 +365,9 @@ namespace OniExtract2
                             categoryIcon = BuildMenuCategory.GetIcon(planInfo.category.HashValue)
                         });
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     var buildings = (List<string>)planInfo.data;
+#pragma warning restore CS0618 // Type or member is obsolete
                     foreach (var building in buildings)
                         export.buildMenuItems.Add(new BuildMenuItem()
                         {

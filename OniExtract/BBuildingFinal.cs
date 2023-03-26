@@ -179,7 +179,9 @@ namespace OniExtract2
                     newSpriteModifier.depth = firstFrame.bbox.Depth;
                     */
 
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
                     bool logSup = false;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
                     if (firstFrame.numElements > 1)
                     {
                         logSup = true;
@@ -355,6 +357,7 @@ namespace OniExtract2
                     if (s.hash == frameElement.symbol)
                     {
                         // We get the symbolFrame (uvInfo)
+#pragma warning disable CS0168 // Variable is declared but never used
                         try
                         {
                             int symbolFrameIndex = s.frameLookup[frameElement.frame];
@@ -373,6 +376,7 @@ namespace OniExtract2
                             Debug.Log("s.frameLookup.Length : " + s.frameLookup.Length.ToString());
                             return false;
                         }
+#pragma warning restore CS0168 // Variable is declared but never used
 
                     }
                 }
@@ -424,22 +428,7 @@ namespace OniExtract2
                 utilities.Add(new UtilityInfo() { offset = new BVector2(b.UtilityOutputOffset), type = UtilityInfo.GetUtilityType(b.OutputConduitType, false), isSecondary = false });
 
             ISecondaryInput secondaryInput = b.BuildingComplete.GetComponent<ISecondaryInput>();
-            if (secondaryInput != null)
-                utilities.Add(new UtilityInfo()
-                {
-                    offset = new BVector2(secondaryInput.GetSecondaryConduitOffset()),
-                    type = UtilityInfo.GetUtilityType(secondaryInput.GetSecondaryConduitType(), true),
-                    isSecondary = true
-                });
-
-            ISecondaryOutput secondaryOutput = b.BuildingComplete.GetComponent<ISecondaryOutput>();
-            if (secondaryOutput != null)
-                utilities.Add(new UtilityInfo()
-                {
-                    offset = new BVector2(secondaryOutput.GetSecondaryConduitOffset()),
-                    type = UtilityInfo.GetUtilityType(secondaryOutput.GetSecondaryConduitType(), false),
-                    isSecondary = true
-                });
+            
 
             LogicPorts logicPorts = b.BuildingComplete.GetComponent<LogicPorts>();
             if (logicPorts != null)
