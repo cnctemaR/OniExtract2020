@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+﻿using Harmony;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -50,13 +50,13 @@ namespace OniExtract2
         [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
         internal class OniExtract_Game_OnPrefabInit
         {
-            public static bool saveIconTexture = false;
-            public static bool saveTileTexture = false;
-            public static bool saveBuildingTexture = false;
-            public static bool saveSubstanceTexture = false;
-            public static bool savePrefabTexture = false;
+            public static bool saveIconTexture = true;
+            public static bool saveTileTexture = true;
+            public static bool saveBuildingTexture = true;
+            public static bool saveSubstanceTexture = true;
+            public static bool savePrefabTexture = true;
             public static bool savePipesTexture = true;
-            public static bool saveAllSprites = false;
+            public static bool saveAllSprites = true;
             static List<string> names = new List<string>();
 
 
@@ -274,7 +274,6 @@ namespace OniExtract2
                 ExportElements(export);
                 ExportSprites(export);
 
-                /*
                 foreach (var animFile in Assets.Anims)
                 {
                     var data = animFile.GetData();
@@ -291,7 +290,6 @@ namespace OniExtract2
                         Debug.Log(anim.name);
                     }
                 }
-                */
 
                 var dirPath = GetDatabaseDirectory();
 
@@ -339,8 +337,7 @@ namespace OniExtract2
 
                     var texName = textureDic[texId];
 
-                    //Debug.Log(sprite.name + " : " + texName + " : " +
-                    //    sprite.textureRect.x + ";" + sprite.textureRect.y + ";" + sprite.textureRect.width + ";" + sprite.textureRect.height);
+                    //Debug.Log(sprite.name + " : " + texName + " : " + sprite.textureRect.x + ";" + sprite.textureRect.y + ";" + sprite.textureRect.width + ";" + sprite.textureRect.height);
 
                     if (saveIconTexture && sprite.texture != null) SaveTexture(texName, sprite.texture);
 
@@ -365,9 +362,7 @@ namespace OniExtract2
                             categoryIcon = BuildMenuCategory.GetIcon(planInfo.category.HashValue)
                         });
 
-#pragma warning disable CS0618 // Type or member is obsolete
                     var buildings = (List<string>)planInfo.data;
-#pragma warning restore CS0618 // Type or member is obsolete
                     foreach (var building in buildings)
                         export.buildMenuItems.Add(new BuildMenuItem()
                         {
