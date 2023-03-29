@@ -56,7 +56,7 @@ namespace OniExtract2
             public static bool saveSubstanceTexture = true;
             public static bool savePrefabTexture = true;
             public static bool savePipesTexture = true;
-            public static bool saveAllSprites = true;
+            public static bool saveAllSprites = false;
             static List<string> names = new List<string>();
 
 
