@@ -404,8 +404,9 @@ namespace OniExtract2
             if (spriteModifier.rotation < 0) spriteModifier.rotation += (float)(2 * Math.PI);
             spriteModifier.rotation *= (float)(180.0f / Math.PI);
 
-            spriteModifier.multColour = new BColor(frameElement.multColour);
-
+            //new_bandaid
+            //spriteModifier.multColour = new BColor(frameElement.multColour);
+            spriteModifier.multColour = new BColor(1, 1, 1, 1);
         }
 
         public void ExportUtilityConnection(BuildingDef b)
@@ -427,18 +428,20 @@ namespace OniExtract2
             if (secondaryInput != null)
                 utilities.Add(new UtilityInfo()
                 {
-                    offset = new BVector2(secondaryInput.GetSecondaryConduitOffset()),
-                    type = UtilityInfo.GetUtilityType(secondaryInput.GetSecondaryConduitType(), true),
-                    isSecondary = true
+                    //new_bandaid
+                    //offset = new BVector2(secondaryInput.GetSecondaryConduitOffset()),
+                    //type = UtilityInfo.GetUtilityType(secondaryInput.GetSecondaryConduitType(), true),
+                    //isSecondary = true
                 });
 
             ISecondaryOutput secondaryOutput = b.BuildingComplete.GetComponent<ISecondaryOutput>();
             if (secondaryOutput != null)
                 utilities.Add(new UtilityInfo()
                 {
-                    offset = new BVector2(secondaryOutput.GetSecondaryConduitOffset()),
-                    type = UtilityInfo.GetUtilityType(secondaryOutput.GetSecondaryConduitType(), false),
-                    isSecondary = true
+                    //new_bandaid
+                    //offset = new BVector2(secondaryOutput.GetSecondaryConduitOffset()),
+                    //type = UtilityInfo.GetUtilityType(secondaryOutput.GetSecondaryConduitType(), false),
+                    //isSecondary = true
                 });
 
             LogicPorts logicPorts = b.BuildingComplete.GetComponent<LogicPorts>();

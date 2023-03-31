@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using KMod;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using UnityEngine;
 
 namespace OniExtract2
 {
-    public class Patches
+    public class Patches : UserMod2
     {
         public static class Mod_OnLoad
         {
-            public static void OnLoad()
+            public static void OnLoad(Harmony harmony)
             {
                 Debug.Log("Hello world!");
             }
@@ -50,11 +51,11 @@ namespace OniExtract2
         [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
         internal class OniExtract_Game_OnPrefabInit
         {
-            public static bool saveIconTexture = true;
-            public static bool saveTileTexture = true;
-            public static bool saveBuildingTexture = true;
-            public static bool saveSubstanceTexture = true;
-            public static bool savePrefabTexture = true;
+            public static bool saveIconTexture = false;
+            public static bool saveTileTexture = false;
+            public static bool saveBuildingTexture = false;
+            public static bool saveSubstanceTexture = false;
+            public static bool savePrefabTexture = false;
             public static bool savePipesTexture = true;
             public static bool saveAllSprites = false;
             static List<string> names = new List<string>();
@@ -169,16 +170,17 @@ namespace OniExtract2
 
                 var export = new Export();
 
-                Debug.Log("***** Start buildings *****");
+                Debug.Log("***** Start buildings DISABLED *****");
+                /*
                 for (int indexBuidling = 0; indexBuidling < Assets.BuildingDefs.Count; ++indexBuidling)
                 {
                     var buildingDef = Assets.BuildingDefs[indexBuidling];
                     Debug.Log("************");
-                    Debug.Log(buildingDef.PrefabID); 
-                    
+                    Debug.Log(buildingDef.PrefabID);
+
                     var bBuilding = new BBuildingFinal(buildingDef, export);
 
-                    foreach (var sideScreen in sideScreens)
+                foreach (var sideScreen in sideScreens)
                     {
                         if (sideScreen.IsValidForTarget(buildingDef.BuildingComplete))
                         {
@@ -269,11 +271,14 @@ namespace OniExtract2
 
                     export.buildings.Add(bBuilding);
                 }
+                */
 
+                Debug.Log("==>Exporting Stuff...");
                 ExportBuildMenu(export);
                 ExportElements(export);
                 ExportSprites(export);
 
+                /*
                 foreach (var animFile in Assets.Anims)
                 {
                     var data = animFile.GetData();
@@ -290,6 +295,7 @@ namespace OniExtract2
                         Debug.Log(anim.name);
                     }
                 }
+                */
 
                 var dirPath = GetDatabaseDirectory();
 
@@ -337,7 +343,8 @@ namespace OniExtract2
 
                     var texName = textureDic[texId];
 
-                    //Debug.Log(sprite.name + " : " + texName + " : " + sprite.textureRect.x + ";" + sprite.textureRect.y + ";" + sprite.textureRect.width + ";" + sprite.textureRect.height);
+                    //Debug.Log(sprite.name + " : " + texName + " : " +
+                    //    sprite.textureRect.x + ";" + sprite.textureRect.y + ";" + sprite.textureRect.width + ";" + sprite.textureRect.height);
 
                     if (saveIconTexture && sprite.texture != null) SaveTexture(texName, sprite.texture);
 
