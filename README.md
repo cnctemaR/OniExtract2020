@@ -1,3 +1,3 @@
 # OniExtract2020
 
-Compiled under VS2017 for ONI version 447213
+Trying to get this to work with the latest ONI version (550759 atm)
