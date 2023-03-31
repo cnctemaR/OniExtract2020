@@ -38,6 +38,7 @@ namespace OniExtract2
 
         public BBuildingFinal(BuildingDef b, Export export)
         {
+            Debug.Log("Begin BBuildingFinal");
             this.name = Strings.Get($"STRINGS.BUILDINGS.PREFABS.{b.PrefabID.ToUpperInvariant()}.NAME");
             //int startIndex = name.IndexOf("\">");
             //if (startIndex != -1) this.name = this.name.Substring(startIndex + 2);

@@ -51,11 +51,11 @@ namespace OniExtract2
         [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
         internal class OniExtract_Game_OnPrefabInit
         {
-            public static bool saveIconTexture = false;
-            public static bool saveTileTexture = false;
-            public static bool saveBuildingTexture = false;
-            public static bool saveSubstanceTexture = false;
-            public static bool savePrefabTexture = false;
+            public static bool saveIconTexture = true;
+            public static bool saveTileTexture = true;
+            public static bool saveBuildingTexture = true;
+            public static bool saveSubstanceTexture = true;
+            public static bool savePrefabTexture = true;
             public static bool savePipesTexture = true;
             public static bool saveAllSprites = false;
             static List<string> names = new List<string>();
@@ -127,7 +127,7 @@ namespace OniExtract2
                 try
                 {
 
-                    //Debug.Log("OniExtract: " + "Saving Texture " + name);
+                    Debug.Log("OniExtract: " + "Saving Texture " + name);
 
                     RenderTexture renderTex = RenderTexture.GetTemporary(
                         source.width,
@@ -170,8 +170,8 @@ namespace OniExtract2
 
                 var export = new Export();
 
-                Debug.Log("***** Start buildings DISABLED *****");
-                /*
+                //Debug.Log("***** Start buildings DISABLED *****");
+                ///*
                 for (int indexBuidling = 0; indexBuidling < Assets.BuildingDefs.Count; ++indexBuidling)
                 {
                     var buildingDef = Assets.BuildingDefs[indexBuidling];
@@ -207,6 +207,7 @@ namespace OniExtract2
                                     screen.tooltip = Strings.Get(targetCast.GetSliderTooltipKey(0));
                                     screen.defaultValue = targetCast.GetSliderValue(0);
 
+                                    Debug.Log("FIRED1====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
                             }
@@ -230,6 +231,7 @@ namespace OniExtract2
                                     screen.defaultValue = target.Threshold;
                                     screen.defaultBoolean = target.ActivateAboveThreshold;
 
+                                    Debug.Log("FIRED2====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
                             }
@@ -249,6 +251,7 @@ namespace OniExtract2
                                     screen.activateTooltip = target.ActivateTooltip;
                                     screen.deactivateTooltip = target.DeactivateTooltip;
 
+                                    Debug.Log("FIRED3====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
 
@@ -262,16 +265,20 @@ namespace OniExtract2
                                     screen.title = Strings.Get(target.SideScreenTitle);
                                     screen.description = target.SideScreenDescription;
 
+                                    Debug.Log("FIRED4====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
                                 else Debug.Log("No UI screen found for " + buildingDef.PrefabID);
                             }
+                            else Debug.Log("Crashes after " + buildingDef.PrefabID + " and " + screendId);
                         }
                     }
 
+                    Debug.Log("Before export.buildings.Add(bBuilding)");
                     export.buildings.Add(bBuilding);
+                    Debug.Log("After export.buildings.Add(bBuilding)");
                 }
-                */
+                //*/
 
                 Debug.Log("==>Exporting Stuff...");
                 ExportBuildMenu(export);
