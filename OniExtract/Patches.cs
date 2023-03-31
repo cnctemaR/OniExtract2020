@@ -172,7 +172,7 @@ namespace OniExtract2
 
                 //Debug.Log("***** Start buildings DISABLED *****");
                 ///*
-                for (int indexBuidling = 0; indexBuidling < Assets.BuildingDefs.Count; ++indexBuidling)
+                for (int indexBuidling = 0; indexBuidling < Assets.BuildingDefs.Count; indexBuidling++)
                 {
                     var buildingDef = Assets.BuildingDefs[indexBuidling];
                     Debug.Log("************");
@@ -270,7 +270,7 @@ namespace OniExtract2
                                 }
                                 else Debug.Log("No UI screen found for " + buildingDef.PrefabID);
                             }
-                            else if (screendId.Equals(" ComplexFabricatorSideScreen"))
+                            else if (screendId.Equals("ComplexFabricatorSideScreen"))
                             {
                             Debug.Log("Crashes during buildings at (line 273) with an index of " + indexBuidling + " and screendId of " + screendId);
                             continue;
