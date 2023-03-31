@@ -165,7 +165,7 @@ namespace OniExtract2
                 .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(SideScreenContent))))
                 {
                     sideScreens.Add((SideScreenContent)Activator.CreateInstance(type, new object[0]));
-                    Debug.Log(type.ToString());
+                    Debug.Log("SideScreens type.ToString() " + type.ToString());
                 }
 
                 var export = new Export();
