@@ -176,7 +176,7 @@ namespace OniExtract2
                 {
                     var buildingDef = Assets.BuildingDefs[indexBuidling];
                     Debug.Log("************");
-                    Debug.Log(buildingDef.PrefabID);
+                    Debug.Log("buildingDef.PrefabID is " + buildingDef.PrefabID);
 
                     var bBuilding = new BBuildingFinal(buildingDef, export);
 
@@ -185,7 +185,7 @@ namespace OniExtract2
                         if (sideScreen.IsValidForTarget(buildingDef.BuildingComplete))
                         {
                             string screendId = sideScreen.GetType().ToString();
-                            Debug.Log("==>" + screendId);
+                            Debug.Log("screendId is ==>" + screendId + "indexBuidling is " + indexBuidling);
 
                             if (screendId.Equals("SingleSliderSideScreen"))
                             {
@@ -270,13 +270,16 @@ namespace OniExtract2
                                 }
                                 else Debug.Log("No UI screen found for " + buildingDef.PrefabID);
                             }
-                            else Debug.Log("Crashes after " + buildingDef.PrefabID + " and " + screendId);
+                            else if (screendId.Equals(" ComplexFabricatorSideScreen"))
+                            {
+                            Debug.Log("Crashes during buildings at (line 273) with an index of " + indexBuidling + " and screendId of " + screendId);
+                            continue;
+                            }
+                            
                         }
                     }
 
-                    Debug.Log("Before export.buildings.Add(bBuilding)");
                     export.buildings.Add(bBuilding);
-                    Debug.Log("After export.buildings.Add(bBuilding)");
                 }
                 //*/
 
