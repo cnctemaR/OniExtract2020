@@ -172,20 +172,25 @@ namespace OniExtract2
 
                 //Debug.Log("***** Start buildings DISABLED *****");
                 ///*
-                for (int indexBuidling = 0; indexBuidling < Assets.BuildingDefs.Count; indexBuidling++)
+                for (int indexBuilding = 0; indexBuilding < Assets.BuildingDefs.Count; ++indexBuilding)
                 {
-                    var buildingDef = Assets.BuildingDefs[indexBuidling];
+                    var buildingDef = Assets.BuildingDefs[indexBuilding];
                     Debug.Log("************");
+                    Debug.Log($"indexBuilding is {indexBuilding}");
                     Debug.Log("buildingDef.PrefabID is " + buildingDef.PrefabID);
 
                     var bBuilding = new BBuildingFinal(buildingDef, export);
 
                 foreach (var sideScreen in sideScreens)
                     {
-                        if (sideScreen.IsValidForTarget(buildingDef.BuildingComplete))
+                        if (sideScreen == null)
+                        {
+                            Debug.Log($"{sideScreen} was null");
+                            continue;
+                        } else if (sideScreen.IsValidForTarget(buildingDef.BuildingComplete))
                         {
                             string screendId = sideScreen.GetType().ToString();
-                            Debug.Log("screendId is ==>" + screendId + "indexBuidling is " + indexBuidling);
+                            Debug.Log($"screendId is ==> {screendId} indexBuilding is {indexBuilding}");
 
                             if (screendId.Equals("SingleSliderSideScreen"))
                             {
@@ -272,10 +277,17 @@ namespace OniExtract2
                             }
                             else if (screendId.Equals("ComplexFabricatorSideScreen"))
                             {
-                            Debug.Log("Crashes during buildings at (line 273) with an index of " + indexBuidling + " and screendId of " + screendId);
-                            continue;
+                                Debug.Log($"Crashes during buildings at (line 273) with an index of {indexBuilding} and screendId of {screendId}");
+                                continue;
                             }
-                            
+
+                        }
+                        else
+                        {
+                            string items = string.Join(Environment.NewLine, sideScreens);
+                            Console.WriteLine(items);
+                            Debug.Log($"Error, {sideScreens}, trying continue, indexBuilding is {indexBuilding}");
+                            continue;
                         }
                     }
 
