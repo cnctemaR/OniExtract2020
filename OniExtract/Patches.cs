@@ -1,4 +1,5 @@
-﻿using Harmony;
+﻿using HarmonyLib;
+using KMod;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using UnityEngine;
 
 namespace OniExtract2
 {
-    public class Patches
+    public class Patches : UserMod2
     {
         public static class Mod_OnLoad
         {
-            public static void OnLoad()
+            public static void OnLoad(Harmony harmony)
             {
                 Debug.Log("Hello world!");
             }
@@ -126,7 +127,7 @@ namespace OniExtract2
                 try
                 {
 
-                    //Debug.Log("OniExtract: " + "Saving Texture " + name);
+                    Debug.Log("OniExtract: " + "Saving Texture " + name);
 
                     RenderTexture renderTex = RenderTexture.GetTemporary(
                         source.width,
@@ -164,26 +165,32 @@ namespace OniExtract2
                 .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(SideScreenContent))))
                 {
                     sideScreens.Add((SideScreenContent)Activator.CreateInstance(type, new object[0]));
-                    Debug.Log(type.ToString());
+                    Debug.Log("SideScreens type.ToString() " + type.ToString());
                 }
 
                 var export = new Export();
 
-                Debug.Log("***** Start buildings *****");
-                for (int indexBuidling = 0; indexBuidling < Assets.BuildingDefs.Count; ++indexBuidling)
+                //Debug.Log("***** Start buildings DISABLED *****");
+                ///*
+                for (int indexBuilding = 0; indexBuilding < Assets.BuildingDefs.Count; ++indexBuilding)
                 {
-                    var buildingDef = Assets.BuildingDefs[indexBuidling];
+                    var buildingDef = Assets.BuildingDefs[indexBuilding];
                     Debug.Log("************");
-                    Debug.Log(buildingDef.PrefabID); 
-                    
+                    Debug.Log($"indexBuilding is {indexBuilding}");
+                    Debug.Log("buildingDef.PrefabID is " + buildingDef.PrefabID);
+
                     var bBuilding = new BBuildingFinal(buildingDef, export);
 
-                    foreach (var sideScreen in sideScreens)
+                foreach (var sideScreen in sideScreens)
                     {
-                        if (sideScreen.IsValidForTarget(buildingDef.BuildingComplete))
+                        if (sideScreen == null)
+                        {
+                            Debug.Log($"{sideScreen} was null");
+                            continue;
+                        } else if (sideScreen.IsValidForTarget(buildingDef.BuildingComplete))
                         {
                             string screendId = sideScreen.GetType().ToString();
-                            Debug.Log("==>" + screendId);
+                            Debug.Log($"screendId is ==> {screendId} indexBuilding is {indexBuilding}");
 
                             if (screendId.Equals("SingleSliderSideScreen"))
                             {
@@ -205,6 +212,7 @@ namespace OniExtract2
                                     screen.tooltip = Strings.Get(targetCast.GetSliderTooltipKey(0));
                                     screen.defaultValue = targetCast.GetSliderValue(0);
 
+                                    Debug.Log("FIRED1====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
                             }
@@ -228,6 +236,7 @@ namespace OniExtract2
                                     screen.defaultValue = target.Threshold;
                                     screen.defaultBoolean = target.ActivateAboveThreshold;
 
+                                    Debug.Log("FIRED2====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
                             }
@@ -247,6 +256,7 @@ namespace OniExtract2
                                     screen.activateTooltip = target.ActivateTooltip;
                                     screen.deactivateTooltip = target.DeactivateTooltip;
 
+                                    Debug.Log("FIRED3====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
 
@@ -260,20 +270,37 @@ namespace OniExtract2
                                     screen.title = Strings.Get(target.SideScreenTitle);
                                     screen.description = target.SideScreenDescription;
 
+                                    Debug.Log("FIRED4====>" + screen.title);
                                     bBuilding.uiScreens.Add(screen);
                                 }
                                 else Debug.Log("No UI screen found for " + buildingDef.PrefabID);
                             }
+                            else if (screendId.Equals("ComplexFabricatorSideScreen"))
+                            {
+                                Debug.Log($"Crashes during buildings at (line 273) with an index of {indexBuilding} and screendId of {screendId}");
+                                continue;
+                            }
+
+                        }
+                        else
+                        {
+                            string items = string.Join(Environment.NewLine, sideScreens);
+                            Console.WriteLine(items);
+                            Debug.Log($"Error, {sideScreens}, trying continue, indexBuilding is {indexBuilding}");
+                            continue;
                         }
                     }
 
                     export.buildings.Add(bBuilding);
                 }
+                //*/
 
+                Debug.Log("==>Exporting Stuff...");
                 ExportBuildMenu(export);
                 ExportElements(export);
                 ExportSprites(export);
 
+                /*
                 foreach (var animFile in Assets.Anims)
                 {
                     var data = animFile.GetData();
@@ -290,6 +317,7 @@ namespace OniExtract2
                         Debug.Log(anim.name);
                     }
                 }
+                */
 
                 var dirPath = GetDatabaseDirectory();
 
@@ -337,7 +365,8 @@ namespace OniExtract2
 
                     var texName = textureDic[texId];
 
-                    //Debug.Log(sprite.name + " : " + texName + " : " + sprite.textureRect.x + ";" + sprite.textureRect.y + ";" + sprite.textureRect.width + ";" + sprite.textureRect.height);
+                    //Debug.Log(sprite.name + " : " + texName + " : " +
+                    //    sprite.textureRect.x + ";" + sprite.textureRect.y + ";" + sprite.textureRect.width + ";" + sprite.textureRect.height);
 
                     if (saveIconTexture && sprite.texture != null) SaveTexture(texName, sprite.texture);
 
