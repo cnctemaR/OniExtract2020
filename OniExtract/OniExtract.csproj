@@ -64,19 +64,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBuildingFinal.cs" />
-    <Compile Include="BColor.cs" />
-    <Compile Include="BElement.cs" />
-    <Compile Include="BSpriteInfo.cs" />
-    <Compile Include="BSpriteModifier.cs" />
-    <Compile Include="BuildMenuCategory.cs" />
-    <Compile Include="BVector2.cs" />
+    <Compile Include="model\BColor.cs" />
+    <Compile Include="model\BElement.cs" />
+    <Compile Include="model\BSpriteInfo.cs" />
+    <Compile Include="model\BSpriteModifier.cs" />
+    <Compile Include="model\BuildMenuCategory.cs" />
+    <Compile Include="model\BVector2.cs" />
     <Compile Include="Export.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpriteName.cs" />
-    <Compile Include="UiScreen.cs" />
-    <Compile Include="UtilityInfo.cs" />
-    <Compile Include="UtilityType.cs" />
+    <Compile Include="model\SpriteName.cs" />
+    <Compile Include="model\UiScreen.cs" />
+    <Compile Include="model\UtilityInfo.cs" />
+    <Compile Include="model\UtilityType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\OniExtract2020\lib\LibNoiseDotNet.dll" />
