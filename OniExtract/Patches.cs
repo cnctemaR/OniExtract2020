@@ -420,5 +420,23 @@ namespace OniExtract2
 
             }
         }
+
+        [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
+        internal class OniExtract_Game_Buildings
+        {
+            private static void Postfix()
+            {
+                Debug.Log("OniExtract: " + "Export Buildings");
+            }
+        }
+
+        [HarmonyPatch(typeof(EntityConfigManager), "LoadGeneratedEntities")]
+        internal class OniExtract_Game_Entities
+        {
+            private static void Postfix()
+            {
+                Debug.Log("OniExtract: " + "Export Entities");
+            }
+        }
     }
 }
