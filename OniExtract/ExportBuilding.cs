@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ExportBuilding : BaseExport
 {
-    public override string DatabaseDirName { get; set; } = "building";
+    public override string ExportFileName { get; set; } = "building";
     public List<BuildingDef> buildingDefs;
     public List<BBuildingDef> bBuildingDefList;
 
