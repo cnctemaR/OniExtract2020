@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using static GeyserGenericConfig;
 
 namespace OniExtract2
 {
@@ -430,12 +431,14 @@ namespace OniExtract2
             }
         }
 
-        [HarmonyPatch(typeof(EntityConfigManager), "LoadGeneratedEntities")]
-        internal class OniExtract_Game_Entities
+        [HarmonyPatch(typeof(GeyserGenericConfig), "GenerateConfigs")]
+        internal class OniExtract_Game_Geysers
         {
-            private static void Postfix()
+            static void Postfix(ref List<GeyserPrefabParams> __result)
             {
-                Debug.Log("OniExtract: " + "Export Entities");
+                Debug.Log("OniExtract: " + "Export Geysers");
+                ExportGeyser exportGeyser = new ExportGeyser();
+                ExportGeyser.AddGeyserPrefabParams(exportGeyser, __result);
             }
         }
     }
