@@ -436,6 +436,8 @@ namespace OniExtract2
             private static void Postfix()
             {
                 Debug.Log("OniExtract: " + "Export Entities");
+                ExportFood exportFood = new ExportFood();
+                ExportFood.ExportAllFood(exportFood);
             }
         }
     }
