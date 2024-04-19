@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using static GeyserGenericConfig;
 
 namespace OniExtract2
 {
@@ -181,7 +182,7 @@ namespace OniExtract2
 
                     var bBuilding = new BBuildingFinal(buildingDef, export);
 
-                foreach (var sideScreen in sideScreens)
+                    foreach (var sideScreen in sideScreens)
                     {
                         if (sideScreen == null)
                         {
@@ -448,6 +449,17 @@ namespace OniExtract2
                 ExportRecipe.ExportComplexRecipes(exportRecipe);
                 ExportFood exportFood = new ExportFood();
                 ExportFood.ExportAllFood(exportFood);
+            }
+        }
+
+        [HarmonyPatch(typeof(GeyserGenericConfig), "GenerateConfigs")]
+        internal class OniExtract_Game_Geysers
+        {
+            static void Postfix(ref List<GeyserPrefabParams> __result)
+            {
+                Debug.Log("OniExtract: " + "Export Geysers");
+                ExportGeyser exportGeyser = new ExportGeyser();
+                ExportGeyser.AddGeyserPrefabParams(exportGeyser, __result);
             }
         }
 

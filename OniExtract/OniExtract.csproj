@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBuildingFinal.cs" />
+    <Compile Include="ExportGeyser.cs" />
     <Compile Include="ExportBuilding.cs" />
     <Compile Include="ExportEntity.cs" />
     <Compile Include="ExportFood.cs" />
