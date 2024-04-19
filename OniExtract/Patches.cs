@@ -438,5 +438,23 @@ namespace OniExtract2
                 Debug.Log("OniExtract: " + "Export Entities");
             }
         }
+
+        [HarmonyPatch(typeof(EntityConfigManager), "RegisterEntity")]
+        internal class OniExtract_Game_EntityConfig
+        {
+            static ExportEntity exportEntity = new ExportEntity();
+            static void Prefix(IEntityConfig config)
+            {
+                GameObject gameObject = config.CreatePrefab();
+                BEntity bEntity = new BEntity(gameObject.PrefabID().Name, gameObject.GetComponent<KPrefabID>().Tags);
+                var dlcIds = config.GetDlcIds();
+                ExportEntity.LoadEntityComponent(gameObject, bEntity, dlcIds);
+                exportEntity.entities.Add(bEntity);
+            }
+            static void Postfix()
+            {
+                exportEntity.ExportJsonFile();
+            }
+        }
     }
 }
