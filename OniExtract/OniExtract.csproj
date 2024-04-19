@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBuildingFinal.cs" />
+    <Compile Include="ExportBuilding.cs" />
     <Compile Include="ExportEntity.cs" />
     <Compile Include="BaseExport.cs" />
     <Compile Include="model\BColor.cs" />
@@ -103,6 +104,21 @@
     <Compile Include="model\UiScreen.cs" />
     <Compile Include="model\UtilityInfo.cs" />
     <Compile Include="model\UtilityType.cs" />
+    <Compile Include="model\OutConduitConsumer.cs" />
+    <Compile Include="model\OutConduitDispenser.cs" />
+    <Compile Include="model\OutPassiveElementConsumer.cs" />
+    <Compile Include="model\OutElementConsumer.cs" />
+    <Compile Include="model\OutPlantablePlot.cs" />
+    <Compile Include="model\OutElementConverter.cs" />
+    <Compile Include="model\OutConsumedElement.cs" />
+    <Compile Include="model\OutOutputElement.cs" />
+    <Compile Include="model\OutStorage.cs" />
+    <Compile Include="model\OutOperational.cs" />
+    <Compile Include="model\OutEnergyGenerator.cs" />
+    <Compile Include="model\BSpriteInfo.cs" />
+    <Compile Include="model\BSpriteModifier.cs" />
+    <Compile Include="model\BVector2.cs" />
+    <Compile Include="BBuildingDef.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\OniExtract2020\lib\LibNoiseDotNet.dll" />

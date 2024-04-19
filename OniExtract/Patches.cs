@@ -427,6 +427,14 @@ namespace OniExtract2
             private static void Postfix()
             {
                 Debug.Log("OniExtract: " + "Export Buildings");
+                ExportBuilding export = new ExportBuilding();
+                for (int indexBuilding = 0; indexBuilding < Assets.BuildingDefs.Count; ++indexBuilding)
+                {
+                    var buildingDef = Assets.BuildingDefs[indexBuilding];
+                    export.buildingDefs.Add(buildingDef);
+                    export.AddNewBBuildingDef(buildingDef);
+                }
+                export.ExportJsonFile();
             }
         }
 
