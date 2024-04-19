@@ -9,6 +9,7 @@ public class ExportBuilding : BaseExport
     public override string ExportFileName { get; set; } = "building";
     public List<BuildingDef> buildingDefs;
     public List<BBuildingDef> bBuildingDefList;
+    public List<PlanScreen.PlanInfo> PlanOrder = TUNING.BUILDINGS.PLANORDER;
 
     public ExportBuilding()
 	{
