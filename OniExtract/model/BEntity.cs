@@ -229,7 +229,7 @@ namespace OniExtract2
         public OutHealth health;
         public CharacterOverlay characterOverlay;
         public RangedAttackable rangedAttackable;
-        public FactionAlignment factionAlignment;
+        public OutFactionAlignment factionAlignment;
         public OutPrioritizable prioritizable;
         public CreatureDebugGoToMonitor.Def creatureDebugGoToMonitorDef;
         public DeathMonitor.Def deathMonitorDef;
