@@ -67,6 +67,7 @@
     <Compile Include="ExportBuilding.cs" />
     <Compile Include="ExportEntity.cs" />
     <Compile Include="ExportFood.cs" />
+    <Compile Include="ExportRecipe.cs" />
     <Compile Include="BaseExport.cs" />
     <Compile Include="model\BColor.cs" />
     <Compile Include="model\BElement.cs" />
