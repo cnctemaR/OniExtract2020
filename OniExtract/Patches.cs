@@ -443,16 +443,16 @@ namespace OniExtract2
         internal class OniExtract_Game_EntityConfig
         {
             static ExportEntity exportEntity = new ExportEntity();
-            static void Prefix(IEntityConfig config)
+            static void Postfix(IEntityConfig config)
             {
+                Debug.Log("OniExtract: " + "Export Entity");
                 GameObject gameObject = config.CreatePrefab();
-                BEntity bEntity = new BEntity(gameObject.PrefabID().Name, gameObject.GetComponent<KPrefabID>().Tags);
+                KPrefabID prefabID = gameObject.GetComponent<KPrefabID>();
+                Debug.Log(prefabID.PrefabID().Name);
+                BEntity bEntity = new BEntity(prefabID.PrefabID().Name, gameObject.GetComponent<KPrefabID>().Tags);
                 var dlcIds = config.GetDlcIds();
                 ExportEntity.LoadEntityComponent(gameObject, bEntity, dlcIds);
                 exportEntity.entities.Add(bEntity);
-            }
-            static void Postfix()
-            {
                 exportEntity.ExportJsonFile();
             }
         }

@@ -432,7 +432,7 @@ public class ExportEntity : BaseExport
         FactionAlignment factionAlignment = gameObject.GetComponent<FactionAlignment>();
         if (factionAlignment != null)
         {
-            bEntity.factionAlignment = factionAlignment;
+            bEntity.factionAlignment = new OutFactionAlignment(factionAlignment);
         }
         else
         {

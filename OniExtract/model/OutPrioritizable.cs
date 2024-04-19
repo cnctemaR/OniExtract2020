@@ -16,7 +16,7 @@ namespace OniExtract2
 
         public OutPrioritizable(Prioritizable tv)
         {
-            tv.iconOffset = iconOffset;
+            this.iconOffset = tv.iconOffset;
             this.iconOffset = tv.iconOffset;
             this.showIcon = tv.showIcon;
         }
