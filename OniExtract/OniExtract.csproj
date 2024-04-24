@@ -73,6 +73,9 @@
     <Compile Include="model\BuildMenuCategory.cs" />
     <Compile Include="model\BVector2.cs" />
     <Compile Include="Export.cs" />
+    <Compile Include="model\OutSpice.cs" />
+    <Compile Include="model\OutTechItem.cs" />
+    <Compile Include="model\OutTech.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="model\SpriteName.cs" />

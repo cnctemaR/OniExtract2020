@@ -48,7 +48,7 @@ public class ExportDb : BaseExport
     public List<GameplayEvent> gameplayEvents;
     public List<GameplaySeason> gameplaySeasons;
     public List<PlantMutation> plantMutations;
-    //public List<Spice> spices;
+    public List<OutSpice> spices;
     public List<OutTech> techs;
     public List<TechTreeTitle> techTreeTitles;
     public List<OrbitalData> orbitalTypeCategories;
@@ -95,7 +95,7 @@ public class ExportDb : BaseExport
         this.gameplayEvents = new List<GameplayEvent>();
         this.gameplaySeasons = new List<GameplaySeason>();
         this.plantMutations = new List<PlantMutation>();
-        //this.spices = new List<Spice>();
+        this.spices = new List<OutSpice>();
         this.techs = new List<OutTech>();
         this.techTreeTitles = new List<TechTreeTitle>();
         this.orbitalTypeCategories = new List<OrbitalData>();
@@ -254,10 +254,10 @@ public class ExportDb : BaseExport
         {
             this.plantMutations.Add(resource);
         }
-        //foreach (var resource in Db.Get().Spices.resources)
-        //{
-        //    this.spices.Add(resource);
-        //}
+        foreach (var resource in Db.Get().Spices.resources)
+        {
+            this.spices.Add(new OutSpice(resource));
+        }
         foreach (var resource in Db.Get().Techs.resources)
         {
             this.techs.Add(new OutTech(resource));
