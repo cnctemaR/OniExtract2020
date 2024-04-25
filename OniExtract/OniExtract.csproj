@@ -69,6 +69,7 @@
     <Compile Include="ExportEntity.cs" />
     <Compile Include="ExportFood.cs" />
     <Compile Include="ExportRecipe.cs" />
+    <Compile Include="ExportDb.cs" />
     <Compile Include="BaseExport.cs" />
     <Compile Include="model\BColor.cs" />
     <Compile Include="model\BElement.cs" />
@@ -102,26 +103,26 @@
     <Compile Include="model\OutPrioritizable.cs" />
     <Compile Include="model\OutStorage.cs" />
     <Compile Include="model\OutTemperatureVulnerable.cs" />
-    <Compile Include="Patches.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="model\OutStory.cs" />
+    <Compile Include="model\OutScheduleGroup.cs" />
+    <Compile Include="model\OutChoreGroup.cs" />
+    <Compile Include="model\OutScheduleBlockType.cs" />
+    <Compile Include="model\OutStatusItem.cs" />
+    <Compile Include="model\OutChoreType.cs" />
+    <Compile Include="model\OutSpice.cs" />
+    <Compile Include="model\OutTechItem.cs" />
+    <Compile Include="model\OutTech.cs" />
     <Compile Include="model\SpriteName.cs" />
     <Compile Include="model\UiScreen.cs" />
     <Compile Include="model\UtilityInfo.cs" />
     <Compile Include="model\UtilityType.cs" />
     <Compile Include="model\OutConduitConsumer.cs" />
     <Compile Include="model\OutConduitDispenser.cs" />
-    <Compile Include="model\OutPassiveElementConsumer.cs" />
-    <Compile Include="model\OutElementConsumer.cs" />
     <Compile Include="model\OutPlantablePlot.cs" />
-    <Compile Include="model\OutElementConverter.cs" />
-    <Compile Include="model\OutConsumedElement.cs" />
-    <Compile Include="model\OutOutputElement.cs" />
-    <Compile Include="model\OutStorage.cs" />
     <Compile Include="model\OutOperational.cs" />
     <Compile Include="model\OutEnergyGenerator.cs" />
-    <Compile Include="model\BSpriteInfo.cs" />
-    <Compile Include="model\BSpriteModifier.cs" />
-    <Compile Include="model\BVector2.cs" />
+    <Compile Include="Patches.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BBuildingDef.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -482,5 +482,17 @@ namespace OniExtract2
                 exportEntity.ExportJsonFile();
             }
         }
+
+        [HarmonyPatch(typeof(LegacyModMain), "Load")]
+        internal class OniExtract_Game_Db
+        {
+            private static void Postfix()
+            {
+                Debug.Log("OniExtract: " + "Export Db");
+                ExportDb exportDb = new ExportDb();
+                exportDb.AddDbResources();
+                exportDb.ExportJsonFile();
+            }
+        }
     }
 }
