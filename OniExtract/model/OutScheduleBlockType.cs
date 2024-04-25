@@ -1,32 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
+using Klei.AI;
+using static Database.Spice;
+using System.Collections.Generic;
 
 namespace OniExtract2
 {
-    public class OutTechItem
+    public class OutScheduleBlockType
     {
         public string Name;
         public string Id;
         public HashedString IdHash;
         public bool Disabled;
         public ResourceGuid Guid;
+        public BColor color;
         public string description;
-        public string parentTechId;
-        public string[] dlcIds;
 
-        public OutTechItem(TechItem tv)
+        public OutScheduleBlockType(ScheduleBlockType tv)
         {
             this.Name = tv.Name;
             this.Id = tv.Id;
             this.IdHash = tv.IdHash;
             this.Disabled = tv.Disabled;
             this.Guid = tv.Guid;
+            this.color = new BColor(tv.color);
             this.description = tv.description;
-            this.parentTechId = tv.parentTechId;
-            this.dlcIds = tv.dlcIds;
         }
     }
 }

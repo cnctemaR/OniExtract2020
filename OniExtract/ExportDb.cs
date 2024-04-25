@@ -30,12 +30,12 @@ public class ExportDb : BaseExport
     public List<StatusItem> robotStatusItems;
     public List<StatusItemCategory> statusItemCategories;
     public List<Death> deaths;
-    //public List<ChoreType> choreTypes;
-    //public List<OutTechItem> techItems;
+    public List<OutChoreType> choreTypes;
+    public List<OutTechItem> techItems;
     public List<AccessorySlot> accessorySlots;
     public List<Accessory> accessories;
-    //public List<ScheduleBlockType> scheduleBlockTypes;
-    //public List<ScheduleGroup> scheduleGroups;
+    public List<OutScheduleBlockType> scheduleBlockTypes;
+    public List<OutScheduleGroup> scheduleGroups;
     public List<RoomTypeCategory> roomTypeCategories;
     public List<RoomType> roomTypes;
     public List<ArtifactDropRate> artifactDropRates;
@@ -77,12 +77,12 @@ public class ExportDb : BaseExport
         this.robotStatusItems = new List<StatusItem>();
         this.statusItemCategories = new List<StatusItemCategory>();
         this.deaths = new List<Death>();
-        //this.choreTypes = new List<ChoreType>();
-        //this.techItems = new List<OutTechItem>();
+        this.choreTypes = new List<OutChoreType>();
+        this.techItems = new List<OutTechItem>();
         this.accessorySlots = new List<AccessorySlot>();
         this.accessories = new List<Accessory>();
-        //this.scheduleBlockTypes = new List<ScheduleBlockType>();
-        //this.scheduleGroups = new List<ScheduleGroup>();
+        this.scheduleBlockTypes = new List<OutScheduleBlockType>();
+        this.scheduleGroups = new List<OutScheduleGroup>();
         this.roomTypeCategories = new List<RoomTypeCategory>();
         this.roomTypes = new List<RoomType>();
         this.artifactDropRates = new List<ArtifactDropRate>();
@@ -182,14 +182,14 @@ public class ExportDb : BaseExport
         {
             this.deaths.Add(resource);
         }
-        //foreach (var resource in Db.Get().ChoreTypes.resources)
-        //{
-        //    this.choreTypes.Add(resource);
-        //}
-        //foreach (var resource in Db.Get().TechItems.resources)
-        //{
-        //    this.techItems.Add(resource);
-        //}
+        foreach (var resource in Db.Get().ChoreTypes.resources)
+        {
+            this.choreTypes.Add(new OutChoreType(resource));
+        }
+        foreach (var resource in Db.Get().TechItems.resources)
+        {
+            this.techItems.Add(new OutTechItem(resource));
+        }
         foreach (var resource in Db.Get().AccessorySlots.resources)
         {
             this.accessorySlots.Add(resource);
@@ -198,14 +198,14 @@ public class ExportDb : BaseExport
         {
             this.accessories.Add(resource);
         }
-        //foreach (var resource in Db.Get().ScheduleBlockTypes.resources)
-        //{
-        //    this.scheduleBlockTypes.Add(resource);
-        //}
-        //foreach (var resource in Db.Get().ScheduleGroups.resources)
-        //{
-        //    this.scheduleGroups.Add(resource);
-        //}
+        foreach (var resource in Db.Get().ScheduleBlockTypes.resources)
+        {
+            this.scheduleBlockTypes.Add(new OutScheduleBlockType(resource));
+        }
+        foreach (var resource in Db.Get().ScheduleGroups.resources)
+        {
+            this.scheduleGroups.Add(new OutScheduleGroup(resource));
+        }
         foreach (var resource in Db.Get().RoomTypeCategories.resources)
         {
             this.roomTypeCategories.Add(resource);
@@ -278,9 +278,9 @@ public class ExportDb : BaseExport
         {
             this.artableStatuses.Add(resource);
         }
-        //foreach (var resource in Db.Get().Stories.resources)
-        //{
-        //    this.stories.Add(resource);
-        //}
+        foreach (var resource in Db.Get().Stories.resources)
+        {
+            this.stories.Add(resource);
+        }
     }
 }

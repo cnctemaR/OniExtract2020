@@ -11,6 +11,7 @@ namespace OniExtract2
         public string Id;
         public HashedString IdHash;
         public bool Disabled;
+        public ResourceGuid Guid;
         public Ingredient[] Ingredients;
         public float TotalKG;
         public AttributeModifier StatBonus;
@@ -28,6 +29,7 @@ namespace OniExtract2
             this.Id = tv.Id;
             this.IdHash = tv.IdHash;
             this.Disabled = tv.Disabled;
+            this.Guid = tv.Guid;
             this.Ingredients = tv.Ingredients;
             this.TotalKG = tv.TotalKG;
             this.StatBonus = tv.StatBonus;

@@ -12,6 +12,7 @@ namespace OniExtract2
         public string Id;
         public HashedString IdHash;
         public bool Disabled;
+        public ResourceGuid Guid;
         public List<string> requiredTechIDs = new List<string>();
         public List<string> unlockedTechIDs = new List<string>();
         public List<OutTechItem> unlockedItems = new List<OutTechItem>();
@@ -30,6 +31,7 @@ namespace OniExtract2
             this.Id = tv.Id;
             this.IdHash = tv.IdHash;
             this.Disabled = tv.Disabled;
+            this.Guid = tv.Guid;
             this.requiredTechIDs = getOutTechIDList(tv.requiredTech);
             this.unlockedTechIDs = getOutTechIDList(tv.unlockedTech);
             this.unlockedItems = getOutTechItemList(tv.unlockedItems);
