@@ -20,7 +20,7 @@ namespace OniExtract2
         public string soundPath;
         public string iconName;
         public bool unique;
-        //public TintedSprite sprite; //To Long, Not Output.
+        public TintedSprite sprite;
         public bool shouldNotify;
         public IconType iconType;
         public NotificationType notificationType;
@@ -49,6 +49,7 @@ namespace OniExtract2
             this.soundPath = tv.soundPath;
             this.iconName = tv.iconName;
             this.unique = tv.unique;
+            this.sprite = tv.sprite;
             this.shouldNotify = tv.shouldNotify;
             this.iconType = tv.iconType;
             this.notificationType = tv.notificationType;
