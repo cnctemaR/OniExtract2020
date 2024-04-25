@@ -54,7 +54,7 @@ public class ExportDb : BaseExport
     public List<OrbitalData> orbitalTypeCategories;
     public List<PermitResource> permitResources;
     public List<ArtableStatusItem> artableStatuses;
-    public List<Story> stories;
+    public List<OutStory> stories;
 
     public ExportDb()
     {
@@ -101,7 +101,7 @@ public class ExportDb : BaseExport
         this.orbitalTypeCategories = new List<OrbitalData>();
         this.permitResources = new List<PermitResource>();
         this.artableStatuses = new List<ArtableStatusItem>();
-        this.stories = new List<Story>();
+        this.stories = new List<OutStory>();
     }
 
     public void AddDbResources()
@@ -166,14 +166,8 @@ public class ExportDb : BaseExport
         {
             this.miscStatusItems.Add(resource);
         }
-        foreach (var resource in Db.Get().CreatureStatusItems.resources)
-        {
-            this.creatureStatusItems.Add(resource);
-        }
-        foreach (var resource in Db.Get().RobotStatusItems.resources)
-        {
-            this.robotStatusItems.Add(resource);
-        }
+        AddCreatureStatusItems(Db.Get().CreatureStatusItems);
+        AddRobotStatusItems(Db.Get().RobotStatusItems);
         foreach (var resource in Db.Get().StatusItemCategories.resources)
         {
             this.statusItemCategories.Add(resource);
@@ -280,7 +274,98 @@ public class ExportDb : BaseExport
         }
         foreach (var resource in Db.Get().Stories.resources)
         {
-            this.stories.Add(resource);
+            this.stories.Add(new OutStory(resource));
         }
+    }
+
+    public void AddCreatureStatusItems(CreatureStatusItems CreatureStatusItems)
+    {
+        this.creatureStatusItems.Add(CreatureStatusItems.Dead);
+        this.creatureStatusItems.Add(CreatureStatusItems.HealthStatus);
+        this.creatureStatusItems.Add(CreatureStatusItems.Hot);
+        this.creatureStatusItems.Add(CreatureStatusItems.Hot_Crop);
+        this.creatureStatusItems.Add(CreatureStatusItems.Scalding);
+        this.creatureStatusItems.Add(CreatureStatusItems.Cold);
+        this.creatureStatusItems.Add(CreatureStatusItems.Cold_Crop);
+        this.creatureStatusItems.Add(CreatureStatusItems.Crop_Too_Dark);
+        this.creatureStatusItems.Add(CreatureStatusItems.Crop_Too_Bright);
+        this.creatureStatusItems.Add(CreatureStatusItems.Crop_Blighted);
+        this.creatureStatusItems.Add(CreatureStatusItems.Hypothermia);
+        this.creatureStatusItems.Add(CreatureStatusItems.Hyperthermia);
+        this.creatureStatusItems.Add(CreatureStatusItems.Suffocating);
+        this.creatureStatusItems.Add(CreatureStatusItems.Hatching);
+        this.creatureStatusItems.Add(CreatureStatusItems.Incubating);
+        this.creatureStatusItems.Add(CreatureStatusItems.Drowning);
+        this.creatureStatusItems.Add(CreatureStatusItems.Saturated);
+        this.creatureStatusItems.Add(CreatureStatusItems.DryingOut);
+        this.creatureStatusItems.Add(CreatureStatusItems.Growing);
+        this.creatureStatusItems.Add(CreatureStatusItems.CropSleeping);
+        this.creatureStatusItems.Add(CreatureStatusItems.ReadyForHarvest);
+        this.creatureStatusItems.Add(CreatureStatusItems.EnvironmentTooWarm);
+        this.creatureStatusItems.Add(CreatureStatusItems.EnvironmentTooCold);
+        this.creatureStatusItems.Add(CreatureStatusItems.Entombed);
+        this.creatureStatusItems.Add(CreatureStatusItems.Wilting);
+        this.creatureStatusItems.Add(CreatureStatusItems.WiltingDomestic);
+        this.creatureStatusItems.Add(CreatureStatusItems.WiltingNonGrowing);
+        this.creatureStatusItems.Add(CreatureStatusItems.WiltingNonGrowingDomestic);
+        this.creatureStatusItems.Add(CreatureStatusItems.WrongAtmosphere);
+        this.creatureStatusItems.Add(CreatureStatusItems.AtmosphericPressureTooLow);
+        this.creatureStatusItems.Add(CreatureStatusItems.AtmosphericPressureTooHigh);
+        this.creatureStatusItems.Add(CreatureStatusItems.Barren);
+        this.creatureStatusItems.Add(CreatureStatusItems.NeedsFertilizer);
+        this.creatureStatusItems.Add(CreatureStatusItems.NeedsIrrigation);
+        this.creatureStatusItems.Add(CreatureStatusItems.WrongTemperature);
+        this.creatureStatusItems.Add(CreatureStatusItems.WrongFertilizer);
+        this.creatureStatusItems.Add(CreatureStatusItems.WrongIrrigation);
+        this.creatureStatusItems.Add(CreatureStatusItems.WrongFertilizerMajor);
+        this.creatureStatusItems.Add(CreatureStatusItems.WrongIrrigationMajor);
+        this.creatureStatusItems.Add(CreatureStatusItems.CantAcceptFertilizer);
+        this.creatureStatusItems.Add(CreatureStatusItems.CantAcceptIrrigation);
+        this.creatureStatusItems.Add(CreatureStatusItems.Rotting);
+        this.creatureStatusItems.Add(CreatureStatusItems.Fresh);
+        this.creatureStatusItems.Add(CreatureStatusItems.Stale);
+        this.creatureStatusItems.Add(CreatureStatusItems.Spoiled);
+        this.creatureStatusItems.Add(CreatureStatusItems.Refrigerated);
+        this.creatureStatusItems.Add(CreatureStatusItems.RefrigeratedFrozen);
+        this.creatureStatusItems.Add(CreatureStatusItems.Unrefrigerated);
+        this.creatureStatusItems.Add(CreatureStatusItems.SterilizingAtmosphere);
+        this.creatureStatusItems.Add(CreatureStatusItems.ContaminatedAtmosphere);
+        this.creatureStatusItems.Add(CreatureStatusItems.Old);
+        this.creatureStatusItems.Add(CreatureStatusItems.ExchangingElementOutput);
+        this.creatureStatusItems.Add(CreatureStatusItems.ExchangingElementConsume);
+        this.creatureStatusItems.Add(CreatureStatusItems.Hungry);
+        this.creatureStatusItems.Add(CreatureStatusItems.HiveHungry);
+        this.creatureStatusItems.Add(CreatureStatusItems.NoSleepSpot);
+        this.creatureStatusItems.Add(CreatureStatusItems.OriginalPlantMutation);
+        this.creatureStatusItems.Add(CreatureStatusItems.UnknownMutation);
+        this.creatureStatusItems.Add(CreatureStatusItems.SpecificPlantMutation);
+        this.creatureStatusItems.Add(CreatureStatusItems.Crop_Too_NonRadiated);
+        this.creatureStatusItems.Add(CreatureStatusItems.Crop_Too_Radiated);
+        this.creatureStatusItems.Add(CreatureStatusItems.ElementGrowthGrowing);
+        this.creatureStatusItems.Add(CreatureStatusItems.ElementGrowthStunted);
+        this.creatureStatusItems.Add(CreatureStatusItems.ElementGrowthHalted);
+        this.creatureStatusItems.Add(CreatureStatusItems.ElementGrowthComplete);
+        this.creatureStatusItems.Add(CreatureStatusItems.LookingForFood);
+        this.creatureStatusItems.Add(CreatureStatusItems.LookingForGas);
+        this.creatureStatusItems.Add(CreatureStatusItems.LookingForLiquid);
+        this.creatureStatusItems.Add(CreatureStatusItems.Beckoning);
+        this.creatureStatusItems.Add(CreatureStatusItems.BeckoningBlocked);
+        this.creatureStatusItems.Add(CreatureStatusItems.MilkProducer);
+        this.creatureStatusItems.Add(CreatureStatusItems.MilkFull);
+        this.creatureStatusItems.Add(CreatureStatusItems.GettingRanched);
+        this.creatureStatusItems.Add(CreatureStatusItems.GettingMilked);
+    }
+    public void AddRobotStatusItems(RobotStatusItems RobotStatusItems)
+    {
+        this.robotStatusItems.Add(RobotStatusItems.LowBattery);
+        this.robotStatusItems.Add(RobotStatusItems.LowBatteryNoCharge);
+        this.robotStatusItems.Add(RobotStatusItems.DeadBattery);
+        this.robotStatusItems.Add(RobotStatusItems.CantReachStation);
+        this.robotStatusItems.Add(RobotStatusItems.DustBinFull);
+        this.robotStatusItems.Add(RobotStatusItems.Working);
+        this.robotStatusItems.Add(RobotStatusItems.UnloadingStorage);
+        this.robotStatusItems.Add(RobotStatusItems.ReactPositive);
+        this.robotStatusItems.Add(RobotStatusItems.ReactNegative);
+        this.robotStatusItems.Add(RobotStatusItems.MovingToChargeStation);
     }
 }

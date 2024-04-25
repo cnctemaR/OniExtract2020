@@ -73,6 +73,7 @@
     <Compile Include="model\BuildMenuCategory.cs" />
     <Compile Include="model\BVector2.cs" />
     <Compile Include="Export.cs" />
+    <Compile Include="model\OutStory.cs" />
     <Compile Include="model\OutScheduleGroup.cs" />
     <Compile Include="model\OutChoreGroup.cs" />
     <Compile Include="model\OutScheduleBlockType.cs" />
