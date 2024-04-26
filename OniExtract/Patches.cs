@@ -435,7 +435,9 @@ namespace OniExtract2
         {
             private static void Postfix()
             {
-                Debug.Log("OniExtract: " + "Export Entities");
+                Debug.Log("OniExtract: " + "Export Tags");
+                ExportTag exportTag = new ExportTag();
+                exportTag.ExportJsonFile();
             }
         }
     }
