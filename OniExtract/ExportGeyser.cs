@@ -9,6 +9,8 @@ public class ExportGeyser : BaseExport
 {
     public override string ExportFileName { get; set; } = "geyser";
     public List<GeyserGenericConfig.GeyserPrefabParams> geysers;
+    public Dictionary<GeoTunerConfig.Category, GeoTunerConfig.GeotunedGeyserSettings> CategorySettings = GeoTunerConfig.CategorySettings;
+    public Dictionary<HashedString, GeoTunerConfig.GeotunedGeyserSettings> geotunerGeyserSettings = GeoTunerConfig.geotunerGeyserSettings;
 
     public ExportGeyser()
 	{
