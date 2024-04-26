@@ -6,6 +6,7 @@ public class ExportTag : BaseExport
 {
     public override string ExportFileName { get; set; } = "tags";
     public Dictionary<string, int> SimHashes = new Dictionary<string, int>();
+    public List<Tag> RoomConstraintTags = RoomConstraints.ConstraintTags.AllTags;
 
     public ExportTag()
     {
