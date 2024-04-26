@@ -461,7 +461,8 @@ namespace OniExtract2
             {
                 Debug.Log("OniExtract: " + "Export Geysers");
                 ExportGeyser exportGeyser = new ExportGeyser();
-                ExportGeyser.AddGeyserPrefabParams(exportGeyser, __result);
+                exportGeyser.AddGeyserPrefabParams(__result);
+                exportGeyser.ExportJsonFile();
             }
         }
 

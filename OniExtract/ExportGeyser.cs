@@ -1,25 +1,25 @@
-﻿using OniExtract2;
-using System;
-using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using static EdiblesManager;
+using static GeoTunerConfig;
 
 public class ExportGeyser : BaseExport
 {
     public override string ExportFileName { get; set; } = "geyser";
     public List<GeyserGenericConfig.GeyserPrefabParams> geysers;
+    public Dictionary<GeoTunerConfig.Category, GeoTunerConfig.GeotunedGeyserSettings> CategorySettings = GeoTunerConfig.CategorySettings;
+    public Dictionary<HashedString, GeotunedGeyserSettings> geotunerGeyserSettings = GeoTunerConfig.geotunerGeyserSettings;
+    public Dictionary<string, string> geyserIdHashDictionary = new Dictionary<string, string>();
 
     public ExportGeyser()
 	{
         geysers = new List<GeyserGenericConfig.GeyserPrefabParams>();
     }
 
-    public static void AddGeyserPrefabParams(ExportGeyser export, List<GeyserGenericConfig.GeyserPrefabParams> geysersParams)
+    public void AddGeyserPrefabParams(List<GeyserGenericConfig.GeyserPrefabParams> geysersParams)
     {
         geysersParams.ForEach(param => {
-            export.geysers.Add(param);
+            this.geysers.Add(param);
+            this.geyserIdHashDictionary.Add(param.geyserType.id, new HashedString(param.geyserType.id).ToString());
         });
-        export.ExportJsonFile();
     }
 }
