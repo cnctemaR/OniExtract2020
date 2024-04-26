@@ -438,5 +438,16 @@ namespace OniExtract2
                 Debug.Log("OniExtract: " + "Export Entities");
             }
         }
+
+        [HarmonyPatch(typeof(LegacyModMain), "Load")]
+        internal class OniExtract_Game_LegacyModMain
+        {
+            private static void Postfix()
+            {
+                Debug.Log("OniExtract: " + "Export Elements");
+                ExportElement exportElement = new ExportElement();
+                exportElement.ExportJsonFile();
+            }
+        }
     }
 }
