@@ -444,6 +444,11 @@ namespace OniExtract2
         {
             private static void Postfix()
             {
+                Debug.Log("OniExtract: " + "Export Tags");
+                ExportTag exportTag = new ExportTag();
+                exportTag.AddAllGameTags();
+                exportTag.ExportJsonFile();
+                
                 Debug.Log("OniExtract: " + "Export Recipe");
                 ExportRecipe exportRecipe = new ExportRecipe();
                 ExportRecipe.ExportComplexRecipes(exportRecipe);
