@@ -55,6 +55,9 @@ public class ExportDb : BaseExport
     public List<PermitResource> permitResources = new List<PermitResource>();
     public List<ArtableStatusItem> artableStatuses = new List<ArtableStatusItem>();
     public List<OutStory> stories = new List<OutStory>();
+    // ModifierSet
+    public List<OutTraitGroup> traitGroups = new List<OutTraitGroup>();
+    public List<OutTrait> traits = new List<OutTrait>();
 
     public ExportDb()
     {
@@ -231,6 +234,15 @@ public class ExportDb : BaseExport
         foreach (var resource in Db.Get().Stories.resources)
         {
             this.stories.Add(new OutStory(resource));
+        }
+        // ModifierSet
+        foreach (TraitGroup traitGroup in Db.Get().traitGroups.resources)
+        {
+            this.traitGroups.Add(new OutTraitGroup(traitGroup));
+        }
+        foreach (Trait trait in Db.Get().traits.resources)
+        {
+            this.traits.Add(new OutTrait(trait));
         }
     }
 
