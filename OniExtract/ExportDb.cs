@@ -1,11 +1,9 @@
 ﻿using OniExtract2;
-using System;
-using System.IO;
 using System.Collections.Generic;
-using UnityEngine;
 using Database;
 using Klei.AI;
 using static ModifierSet;
+using Attribute = Klei.AI.Attribute;
 
 public class ExportDb : BaseExport
 {
@@ -59,6 +57,13 @@ public class ExportDb : BaseExport
     public List<OutTrait> traits = new List<OutTrait>();
     public List<Effect> effects = new List<Effect>();
     public List<OutTraitGroup> traitGroups = new List<OutTraitGroup>();
+    public List<FertilityModifier> FertilityModifiers = new List<FertilityModifier>();
+    public List<Attribute> Attributes = new List<Attribute>();
+    public List<Attribute> buildingAttributes = new List<Attribute>();
+    public List<Attribute> critterAttributes = new List<Attribute>();
+    public List<Attribute> plantAttributes = new List<Attribute>();
+    public List<Amount> amounts = new List<Amount>();
+    public List<AttributeConverter> attributeConverters = new List<AttributeConverter>();
 
     public ExportDb()
     {
@@ -252,6 +257,34 @@ public class ExportDb : BaseExport
         foreach (TraitGroup traitGroup in Db.Get().traitGroups.resources)
         {
             this.traitGroups.Add(new OutTraitGroup(traitGroup));
+        }
+        foreach (FertilityModifier fertilityModifier in Db.Get().FertilityModifiers.resources)
+        {
+            this.FertilityModifiers.Add(fertilityModifier);
+        }
+        foreach (Attribute attribute in Db.Get().Attributes.resources)
+        {
+            this.Attributes.Add(attribute);
+        }
+        foreach (var resource in Db.Get().BuildingAttributes.resources)
+        {
+            this.buildingAttributes.Add(resource);
+        }
+        foreach (var resource in Db.Get().CritterAttributes.resources)
+        {
+            this.critterAttributes.Add(resource);
+        }
+        foreach (var resource in Db.Get().PlantAttributes.resources)
+        {
+            this.plantAttributes.Add(resource);
+        }
+        foreach (var resource in Db.Get().Amounts.resources)
+        {
+            this.amounts.Add(resource);
+        }
+        foreach (var resource in Db.Get().AttributeConverters.resources)
+        {
+            this.attributeConverters.Add(resource);
         }
     }
 
