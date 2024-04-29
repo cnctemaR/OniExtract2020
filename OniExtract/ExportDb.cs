@@ -52,6 +52,9 @@ public class ExportDb : BaseExport
     public List<PermitResource> permitResources = new List<PermitResource>();
     public List<ArtableStatusItem> artableStatuses = new List<ArtableStatusItem>();
     public List<OutStory> stories = new List<OutStory>();
+    // EntityModifierSet
+    public List<OutStatusItem> DuplicantStatusItems = new List<OutStatusItem>();
+    public List<OutChoreGroup> ChoreGroups = new List<OutChoreGroup>();
     // ModifierSet
     public List<ModifierInfo> modifierInfos = new List<ModifierInfo>();
     public List<OutTrait> traits = new List<OutTrait>();
@@ -240,6 +243,15 @@ public class ExportDb : BaseExport
         foreach (var resource in Db.Get().Stories.resources)
         {
             this.stories.Add(new OutStory(resource));
+        }
+        // EntityModifierSet
+        foreach (var resource in Db.Get().DuplicantStatusItems.resources)
+        {
+            this.DuplicantStatusItems.Add(new OutStatusItem(resource));
+        }
+        foreach (var resource in Db.Get().ChoreGroups.resources)
+        {
+            this.ChoreGroups.Add(new OutChoreGroup(resource));
         }
         // ModifierSet
         foreach (ModifierInfo modifierInfo in Db.Get().modifierInfos.resources)
