@@ -3,10 +3,9 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-using static EdiblesManager;
-using static STRINGS.BUILDING.STATUSITEMS;
 using Database;
 using Klei.AI;
+using static ModifierSet;
 
 public class ExportDb : BaseExport
 {
@@ -56,8 +55,10 @@ public class ExportDb : BaseExport
     public List<ArtableStatusItem> artableStatuses = new List<ArtableStatusItem>();
     public List<OutStory> stories = new List<OutStory>();
     // ModifierSet
-    public List<OutTraitGroup> traitGroups = new List<OutTraitGroup>();
+    public List<ModifierInfo> modifierInfos = new List<ModifierInfo>();
     public List<OutTrait> traits = new List<OutTrait>();
+    public List<Effect> effects = new List<Effect>();
+    public List<OutTraitGroup> traitGroups = new List<OutTraitGroup>();
 
     public ExportDb()
     {
@@ -236,13 +237,21 @@ public class ExportDb : BaseExport
             this.stories.Add(new OutStory(resource));
         }
         // ModifierSet
-        foreach (TraitGroup traitGroup in Db.Get().traitGroups.resources)
+        foreach (ModifierInfo modifierInfo in Db.Get().modifierInfos.resources)
         {
-            this.traitGroups.Add(new OutTraitGroup(traitGroup));
+            this.modifierInfos.Add(modifierInfo);
         }
         foreach (Trait trait in Db.Get().traits.resources)
         {
             this.traits.Add(new OutTrait(trait));
+        }
+        foreach (Effect effect in Db.Get().effects.resources)
+        {
+            this.effects.Add(effect);
+        }
+        foreach (TraitGroup traitGroup in Db.Get().traitGroups.resources)
+        {
+            this.traitGroups.Add(new OutTraitGroup(traitGroup));
         }
     }
 
