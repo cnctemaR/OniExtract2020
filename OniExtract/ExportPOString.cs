@@ -53,7 +53,7 @@ public class ExportPOString : BaseExport
     public int Traverse(Type type, string parentTypeName, Dictionary<string, string> poDict)
     {
         // 输出类名
-        Debug.Log("Class: " + parentTypeName);
+        //Debug.Log("Class: " + parentTypeName);
 
         // 输出类的所有成员
         if(type.GetNestedTypes() != null && type.GetNestedTypes().Length == 0)
@@ -64,19 +64,19 @@ public class ExportPOString : BaseExport
                 // 判断成员类型是否为 LocString
                 if (member is FieldInfo fieldInfo && fieldInfo.FieldType == typeof(LocString))
                 {
-                    Debug.Log("LocString fieldInfo: " + member.Name);
+                    //Debug.Log("LocString fieldInfo: " + member.Name);
                     string valueStr = getFieldInfoValue(fieldInfo, type);
                     if (valueStr != null)
                     {
                         poDict[typeName] = valueStr;
                     }
                 }
-                else if (member is PropertyInfo propertyInfo && propertyInfo.PropertyType == typeof(LocString))
-                {
-                    Debug.Log("LocString propertyInfo: " + member.Name);
-                    var instance = Activator.CreateInstance(type);
-                    poDict[typeName] = propertyInfo.GetValue(instance).ToString();
-                }
+                //else if (member is PropertyInfo propertyInfo && propertyInfo.PropertyType == typeof(LocString))
+                //{
+                //    Debug.Log("LocString propertyInfo: " + member.Name);
+                //    var instance = Activator.CreateInstance(type);
+                //    poDict[typeName] = propertyInfo.GetValue(instance).ToString();
+                //}
             }
 
         }
@@ -85,7 +85,7 @@ public class ExportPOString : BaseExport
         foreach (var nestedType in type.GetNestedTypes())
         {
             string typeName = parentTypeName+"."+nestedType.Name;
-            int nestedTypeNum = Traverse(nestedType, typeName, poDict);
+            Traverse(nestedType, typeName, poDict);
         }
 
         return type.GetNestedTypes().Length;
