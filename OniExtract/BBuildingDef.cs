@@ -17,6 +17,7 @@ namespace OniExtract2
         public List<OutElementConverter> elementConverters = new List<OutElementConverter>();
         public List<OutElementConsumer> elementConsumers = new List<OutElementConsumer>();
         public List<OutPassiveElementConsumer> passiveElementConsumers = new List<OutPassiveElementConsumer>();
+        public OutStorage storage = null;
 
         public BBuildingDef(string name)
         {
