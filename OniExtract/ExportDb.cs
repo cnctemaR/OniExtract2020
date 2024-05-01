@@ -1,107 +1,75 @@
 ﻿using OniExtract2;
-using System;
-using System.IO;
 using System.Collections.Generic;
-using UnityEngine;
-using static EdiblesManager;
-using static STRINGS.BUILDING.STATUSITEMS;
 using Database;
 using Klei.AI;
+using static ModifierSet;
+using Attribute = Klei.AI.Attribute;
 
 public class ExportDb : BaseExport
 {
     public override string ExportFileName { get; set; } = "db";
-    public List<Disease> dieases;
-    public List<Sickness> sicknesses;
-    public List<Urge> urges;
-    public List<AssignableSlot> assignableSlots;
-    public List<StateMachine.Category> stateMachineCategories;
-    public List<Personality> personalities;
-    public List<Face> faces;
-    public List<Shirt> shirts;
-    public List<Expression> expressions;
-    public List<Emote> minionEmotes;
-    public List<Emote> critterEmotes;
-    public List<Thought> thoughts;
-    public List<Dream> dreams;
-    public List<StatusItem> buildingStatusItems;
-    public List<StatusItem> miscStatusItems;
-    public List<StatusItem> creatureStatusItems;
-    public List<StatusItem> robotStatusItems;
-    public List<StatusItemCategory> statusItemCategories;
-    public List<Death> deaths;
-    public List<OutChoreType> choreTypes;
-    public List<OutTechItem> techItems;
-    public List<AccessorySlot> accessorySlots;
-    public List<Accessory> accessories;
-    public List<OutScheduleBlockType> scheduleBlockTypes;
-    public List<OutScheduleGroup> scheduleGroups;
-    public List<RoomTypeCategory> roomTypeCategories;
-    public List<RoomType> roomTypes;
-    public List<ArtifactDropRate> artifactDropRates;
-    public List<SpaceDestinationType> spaceDestinationTypes;
-    public List<SkillPerk> skillPerks;
-    public List<SkillGroup> skillGroups;
-    public List<Skill> skills;
-    public List<ColonyAchievement> colonyAchievements;
-    public List<Quest> quests;
-    public List<GameplayEvent> gameplayEvents;
-    public List<GameplaySeason> gameplaySeasons;
-    public List<PlantMutation> plantMutations;
-    public List<OutSpice> spices;
-    public List<OutTech> techs;
-    public List<TechTreeTitle> techTreeTitles;
-    public List<OrbitalData> orbitalTypeCategories;
-    public List<PermitResource> permitResources;
-    public List<ArtableStatusItem> artableStatuses;
-    public List<OutStory> stories;
+    public List<Disease> dieases = new List<Disease>();
+    public List<Sickness> sicknesses = new List<Sickness>();
+    public List<Urge> urges = new List<Urge>();
+    public List<AssignableSlot> assignableSlots = new List<AssignableSlot>();
+    public List<StateMachine.Category> stateMachineCategories = new List<StateMachine.Category>();
+    public List<Personality> personalities = new List<Personality>();
+    public List<Face> faces = new List<Face>();
+    public List<Shirt> shirts = new List<Shirt>();
+    public List<Expression> expressions = new List<Expression>();
+    public List<Emote> minionEmotes = new List<Emote>();
+    public List<Emote> critterEmotes = new List<Emote>();
+    public List<Thought> thoughts = new List<Thought>();
+    public List<Dream> dreams = new List<Dream>();
+    public List<StatusItem> buildingStatusItems = new List<StatusItem>();
+    public List<StatusItem> miscStatusItems = new List<StatusItem>();
+    public List<StatusItem> creatureStatusItems = new List<StatusItem>();
+    public List<StatusItem> robotStatusItems = new List<StatusItem>();
+    public List<StatusItemCategory> statusItemCategories = new List<StatusItemCategory>();
+    public List<Death> deaths = new List<Death>();
+    public List<OutChoreType> choreTypes = new List<OutChoreType>();
+    public List<OutTechItem> techItems = new List<OutTechItem>();
+    public List<AccessorySlot> accessorySlots = new List<AccessorySlot>();
+    public List<Accessory> accessories = new List<Accessory>();
+    public List<OutScheduleBlockType> scheduleBlockTypes = new List<OutScheduleBlockType>();
+    public List<OutScheduleGroup> scheduleGroups = new List<OutScheduleGroup>();
+    public List<RoomTypeCategory> roomTypeCategories = new List<RoomTypeCategory>();
+    public List<RoomType> roomTypes = new List<RoomType>();
+    public List<ArtifactDropRate> artifactDropRates = new List<ArtifactDropRate>();
+    public List<SpaceDestinationType> spaceDestinationTypes = new List<SpaceDestinationType>();
+    public List<SkillPerk> skillPerks = new List<SkillPerk>();
+    public List<SkillGroup> skillGroups = new List<SkillGroup>();
+    public List<Skill> skills = new List<Skill>();
+    public List<ColonyAchievement> colonyAchievements = new List<ColonyAchievement>();
+    public List<Quest> quests = new List<Quest>();
+    public List<GameplayEvent> gameplayEvents = new List<GameplayEvent>();
+    public List<GameplaySeason> gameplaySeasons = new List<GameplaySeason>();
+    public List<PlantMutation> plantMutations = new List<PlantMutation>();
+    public List<OutSpice> spices = new List<OutSpice>();
+    public List<OutTech> techs = new List<OutTech>();
+    public List<TechTreeTitle>  techTreeTitles = new List<TechTreeTitle>();
+    public List<OrbitalData> orbitalTypeCategories = new List<OrbitalData>();
+    public List<PermitResource> permitResources = new List<PermitResource>();
+    public List<ArtableStatusItem> artableStatuses = new List<ArtableStatusItem>();
+    public List<OutStory> stories = new List<OutStory>();
+    // EntityModifierSet
+    public List<OutStatusItem> DuplicantStatusItems = new List<OutStatusItem>();
+    public List<OutChoreGroup> ChoreGroups = new List<OutChoreGroup>();
+    // ModifierSet
+    public List<ModifierInfo> modifierInfos = new List<ModifierInfo>();
+    public List<OutTrait> traits = new List<OutTrait>();
+    public List<Effect> effects = new List<Effect>();
+    public List<OutTraitGroup> traitGroups = new List<OutTraitGroup>();
+    public List<FertilityModifier> FertilityModifiers = new List<FertilityModifier>();
+    public List<Attribute> Attributes = new List<Attribute>();
+    public List<Attribute> buildingAttributes = new List<Attribute>();
+    public List<Attribute> critterAttributes = new List<Attribute>();
+    public List<Attribute> plantAttributes = new List<Attribute>();
+    public List<Amount> amounts = new List<Amount>();
+    public List<AttributeConverter> attributeConverters = new List<AttributeConverter>();
 
     public ExportDb()
     {
-        this.dieases = new List<Disease>();
-        this.sicknesses = new List<Sickness>();
-        this.urges = new List<Urge>();
-        this.assignableSlots = new List<AssignableSlot>();
-        this.stateMachineCategories = new List<StateMachine.Category>();
-        this.personalities = new List<Personality>();
-        this.faces = new List<Face>();
-        this.shirts = new List<Shirt>();
-        this.expressions = new List<Expression>();
-        this.minionEmotes = new List<Emote>();
-        this.critterEmotes = new List<Emote>();
-        this.thoughts = new List<Thought>();
-        this.dreams = new List<Dream>();
-        this.buildingStatusItems = new List<StatusItem>();
-        this.miscStatusItems = new List<StatusItem>();
-        this.creatureStatusItems = new List<StatusItem>();
-        this.robotStatusItems = new List<StatusItem>();
-        this.statusItemCategories = new List<StatusItemCategory>();
-        this.deaths = new List<Death>();
-        this.choreTypes = new List<OutChoreType>();
-        this.techItems = new List<OutTechItem>();
-        this.accessorySlots = new List<AccessorySlot>();
-        this.accessories = new List<Accessory>();
-        this.scheduleBlockTypes = new List<OutScheduleBlockType>();
-        this.scheduleGroups = new List<OutScheduleGroup>();
-        this.roomTypeCategories = new List<RoomTypeCategory>();
-        this.roomTypes = new List<RoomType>();
-        this.artifactDropRates = new List<ArtifactDropRate>();
-        this.spaceDestinationTypes = new List<SpaceDestinationType>();
-        this.skillPerks = new List<SkillPerk>();
-        this.skillGroups = new List<SkillGroup>();
-        this.skills = new List<Skill>();
-        this.colonyAchievements = new List<ColonyAchievement>();
-        this.quests = new List<Quest>();
-        this.gameplayEvents = new List<GameplayEvent>();
-        this.gameplaySeasons = new List<GameplaySeason>();
-        this.plantMutations = new List<PlantMutation>();
-        this.spices = new List<OutSpice>();
-        this.techs = new List<OutTech>();
-        this.techTreeTitles = new List<TechTreeTitle>();
-        this.orbitalTypeCategories = new List<OrbitalData>();
-        this.permitResources = new List<PermitResource>();
-        this.artableStatuses = new List<ArtableStatusItem>();
-        this.stories = new List<OutStory>();
     }
 
     public void AddDbResources()
@@ -275,6 +243,60 @@ public class ExportDb : BaseExport
         foreach (var resource in Db.Get().Stories.resources)
         {
             this.stories.Add(new OutStory(resource));
+        }
+        // EntityModifierSet
+        foreach (var resource in Db.Get().DuplicantStatusItems.resources)
+        {
+            this.DuplicantStatusItems.Add(new OutStatusItem(resource));
+        }
+        foreach (var resource in Db.Get().ChoreGroups.resources)
+        {
+            this.ChoreGroups.Add(new OutChoreGroup(resource));
+        }
+        // ModifierSet
+        foreach (ModifierInfo modifierInfo in Db.Get().modifierInfos.resources)
+        {
+            this.modifierInfos.Add(modifierInfo);
+        }
+        foreach (Trait trait in Db.Get().traits.resources)
+        {
+            this.traits.Add(new OutTrait(trait));
+        }
+        foreach (Effect effect in Db.Get().effects.resources)
+        {
+            this.effects.Add(effect);
+        }
+        foreach (TraitGroup traitGroup in Db.Get().traitGroups.resources)
+        {
+            this.traitGroups.Add(new OutTraitGroup(traitGroup));
+        }
+        foreach (FertilityModifier fertilityModifier in Db.Get().FertilityModifiers.resources)
+        {
+            this.FertilityModifiers.Add(fertilityModifier);
+        }
+        foreach (Attribute attribute in Db.Get().Attributes.resources)
+        {
+            this.Attributes.Add(attribute);
+        }
+        foreach (var resource in Db.Get().BuildingAttributes.resources)
+        {
+            this.buildingAttributes.Add(resource);
+        }
+        foreach (var resource in Db.Get().CritterAttributes.resources)
+        {
+            this.critterAttributes.Add(resource);
+        }
+        foreach (var resource in Db.Get().PlantAttributes.resources)
+        {
+            this.plantAttributes.Add(resource);
+        }
+        foreach (var resource in Db.Get().Amounts.resources)
+        {
+            this.amounts.Add(resource);
+        }
+        foreach (var resource in Db.Get().AttributeConverters.resources)
+        {
+            this.attributeConverters.Add(resource);
         }
     }
 

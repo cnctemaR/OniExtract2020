@@ -1,7 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Klei.AI;
-using static Database.Spice;
 using System.Collections.Generic;
 
 namespace OniExtract2
@@ -27,7 +25,7 @@ namespace OniExtract2
             this.IdHash = tv.IdHash;
             this.Disabled = tv.Disabled;
             this.Guid = tv.Guid;
-            foreach(ChoreType choreType in tv.choreTypes)
+            foreach (ChoreType choreType in tv.choreTypes)
             {
                 this.choreTypeIDs.Add(choreType.Id);
             }

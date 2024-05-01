@@ -114,6 +114,8 @@
     <Compile Include="model\OutSpice.cs" />
     <Compile Include="model\OutTechItem.cs" />
     <Compile Include="model\OutTech.cs" />
+    <Compile Include="model\OutTraitGroup.cs" />
+    <Compile Include="model\OutTrait.cs" />
     <Compile Include="model\SpriteName.cs" />
     <Compile Include="model\UiScreen.cs" />
     <Compile Include="model\UtilityInfo.cs" />
