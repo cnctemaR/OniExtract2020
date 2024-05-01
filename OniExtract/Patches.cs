@@ -158,6 +158,7 @@ namespace OniExtract2
 
             private static void ExportC()
             {
+                return;
                 Debug.Log("***** Start SideScreens *****");
                 List<SideScreenContent> sideScreens = new List<SideScreenContent>();
                 foreach (Type type in
@@ -430,12 +431,15 @@ namespace OniExtract2
             }
         }
 
-        [HarmonyPatch(typeof(EntityConfigManager), "LoadGeneratedEntities")]
-        internal class OniExtract_Game_Entities
+        [HarmonyPatch(typeof(LegacyModMain), "Load")]
+        internal class OniExtract_Game_POString
         {
             private static void Postfix()
             {
-                Debug.Log("OniExtract: " + "Export Entities");
+                Debug.Log("OniExtract: " + "Export PO_string");
+                ExportPOString exportPOString = new ExportPOString();
+                exportPOString.ExportAll();
+                exportPOString.ExportJsonFile();
             }
         }
     }
