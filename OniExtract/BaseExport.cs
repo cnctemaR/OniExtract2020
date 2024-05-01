@@ -6,6 +6,7 @@ public class BaseExport
 {
     public virtual string DatabaseDirName { get; set; } = "database";
     public virtual string ExportFileName { get; set; } = "database";
+    public string buildVersion = BuildWatermark.GetBuildText();
 
     public string GetDatabaseLocation()
     {
