@@ -57,11 +57,13 @@ Go to `Documents\Klei\OxygenNotIncluded\export` . Here is the dir tree:
 export
 ├─ database
 │    ├─ building.json
-│    ├─ database.json
 │    ├─ db.json
+│    ├─ elements.json
 │    ├─ entities.json
+│    ├─ equipment.json
 │    ├─ food.json
 │    ├─ geyser.json
+│    ├─ po_string.json
 │    ├─ recipe.json
 │    └─ tags.json
 └─ images
