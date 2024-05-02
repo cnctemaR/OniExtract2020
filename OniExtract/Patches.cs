@@ -159,7 +159,6 @@ namespace OniExtract2
 
             private static void ExportC()
             {
-                return;
                 Debug.Log("***** Start SideScreens *****");
                 List<SideScreenContent> sideScreens = new List<SideScreenContent>();
                 foreach (Type type in
