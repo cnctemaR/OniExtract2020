@@ -438,5 +438,17 @@ namespace OniExtract2
                 Debug.Log("OniExtract: " + "Export Entities");
             }
         }
+
+        [HarmonyPatch(typeof(CodexCache), "CodexCacheInit")]
+        internal class OniExtract_Game_Codex
+        {
+            public static ExportCodex exportCodex = new ExportCodex();
+            private static void Postfix()
+            {
+                Debug.Log("OniExtract: " + "Export Codex");
+                exportCodex.AddCategoryEntry(CodexCache.entries);
+                exportCodex.ExportJsonFile();
+            }
+        }
     }
 }
