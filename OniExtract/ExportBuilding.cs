@@ -81,6 +81,11 @@ public class ExportBuilding : BaseExport
                 bBuild.passiveElementConsumers.Add(new OutPassiveElementConsumer(passiveElementConsumer));
             }
         }
+        Storage storage = go.GetComponent<Storage>();
+        if (storage != null)
+        {
+            bBuild.storage = new OutStorage(storage);
+        }       
 
         this.bBuildingDefList.Add(bBuild);
     }
