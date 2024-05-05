@@ -20,6 +20,8 @@ namespace OniExtract2
         public List<OutChoreGroup> disabledChoreGroups = new List<OutChoreGroup>();
         public bool isTaskBeingRefused;
         public List<string> ignoredEffects = new List<string>();
+        public string description;
+        public List<AttributeModifier> SelfModifiers = new List<AttributeModifier>();
 
         public OutTrait(Trait tv)
         {
@@ -44,6 +46,8 @@ namespace OniExtract2
             {
                 this.ignoredEffects.Add(ignoredEffect);
             }
+            this.description = tv.description;
+            this.SelfModifiers = tv.SelfModifiers;
         }
     }
 }
