@@ -98,6 +98,7 @@
     <Compile Include="model\OutPrioritizable.cs" />
     <Compile Include="model\OutStorage.cs" />
     <Compile Include="model\OutTemperatureVulnerable.cs" />
+    <Compile Include="model\OutOxygenBreather.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="model\SpriteName.cs" />

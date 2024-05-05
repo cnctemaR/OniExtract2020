@@ -11,6 +11,7 @@ namespace OniExtract2
     public class BEntity
     {
         public string name;
+        public string nameString;
         public List<string> dlcIds = new List<string>();
         public HashSet<Tag> tags;
         //public AirFilter airFilter;
@@ -258,7 +259,8 @@ namespace OniExtract2
         public List<OutElementConverter> elementConverters = new List<OutElementConverter>();
         public List<OutPassiveElementConsumer> passiveElementConsumers = new List<OutPassiveElementConsumer>();
         public OutComet comet;
-        public string nameString;
+        //duplicant
+        public OutOxygenBreather oxygenBreather;
 
         public BEntity(string name, HashSet<Tag> tags)
         {

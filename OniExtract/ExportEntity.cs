@@ -697,5 +697,14 @@ public class ExportEntity : BaseExport
         {
             bEntity.nameString = null;
         }
+        OxygenBreather oxygenBreather = gameObject.GetComponent<OxygenBreather>();
+        if (oxygenBreather != null)
+        {
+            bEntity.oxygenBreather = new OutOxygenBreather(oxygenBreather);
+        }
+        else
+        {
+            bEntity.oxygenBreather = null;
+        }
     }
 }
