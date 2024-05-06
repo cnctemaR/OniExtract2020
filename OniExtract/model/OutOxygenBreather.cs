@@ -18,7 +18,7 @@ namespace OniExtract2
 
         public OutOxygenBreather(OxygenBreather tv)
         {
-            this.O2toCO2conversion += tv.O2toCO2conversion;
+            this.O2toCO2conversion = tv.O2toCO2conversion;
             this.lowOxygenThreshold = tv.lowOxygenThreshold;
             this.noOxygenThreshold = (float)tv.noOxygenThreshold;
             this.mouthOffset = new BVector2(tv.mouthOffset);
