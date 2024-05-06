@@ -10,11 +10,20 @@ public class ExportBuilding : BaseExport
     public List<BuildingDef> buildingDefs;
     public List<BBuildingDef> bBuildingDefList;
     public List<PlanScreen.PlanInfo> PlanOrder = TUNING.BUILDINGS.PLANORDER;
+    public Dictionary<string, int> PlanOrderPairs = new Dictionary<string, int>();
 
     public ExportBuilding()
 	{
         buildingDefs = new List<BuildingDef>();
         bBuildingDefList = new List<BBuildingDef>();
+        foreach (var PlanOrder in TUNING.BUILDINGS.PLANORDER)
+        {
+            var key = HashCache.Get().Get(PlanOrder.category);
+            if (key != null)
+            {
+                PlanOrderPairs.Add(key, PlanOrder.category.HashValue);
+            }
+        }
     }
 
     public void AddNewBBuildingDef(BuildingDef buildingDef)
