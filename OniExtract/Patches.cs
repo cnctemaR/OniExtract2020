@@ -430,8 +430,8 @@ namespace OniExtract2
             }
         }
 
-        [HarmonyPatch(typeof(EntityConfigManager), "LoadGeneratedEntities")]
-        internal class OniExtract_Game_Entities
+        [HarmonyPatch(typeof(LegacyModMain), "Load")]
+        internal class OniExtract_Game_LegacyModMain
         {
             private static void Postfix()
             {

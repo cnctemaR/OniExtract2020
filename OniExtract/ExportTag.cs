@@ -9,6 +9,7 @@ public class ExportTag : BaseExport
     public Dictionary<string, int> SimHashes = new Dictionary<string, int>();
     public List<Tag> RoomConstraintTags = RoomConstraints.ConstraintTags.AllTags;
     public OutGameTags mGameTags = new OutGameTags();
+    public Dictionary<string, List<string>> prefabIDs = new Dictionary<string, List<string>>();
 
     public class OutGameTags
     {
@@ -48,6 +49,19 @@ public class ExportTag : BaseExport
             else
             {
                 mGameTags.tagNotOutput.Add(field.Name);
+            }
+        }
+        foreach (var prefab in Assets.Prefabs)
+        {
+            List<string> tags = new List<string>();
+            foreach(var tag in prefab.Tags)
+            {
+                tags.Add(tag.Name);
+            }
+            var name = prefab.PrefabTag.Name;
+            if (name != null)
+            {
+                this.prefabIDs[name] = tags;
             }
         }
     }
