@@ -56,36 +56,35 @@ public class ExportPOString : BaseExport
         //Debug.Log("Class: " + parentTypeName);
 
         // 输出类的所有成员
-        if(type.GetNestedTypes() != null && type.GetNestedTypes().Length == 0)
+        foreach (var member in type.GetMembers(BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
         {
-            foreach (var member in type.GetMembers(BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
+            string typeName = parentTypeName + "." + member.Name;
+            // 判断成员类型是否为 LocString
+            if (member is FieldInfo fieldInfo && fieldInfo.FieldType == typeof(LocString))
             {
-                string typeName = parentTypeName + "." + member.Name;
-                // 判断成员类型是否为 LocString
-                if (member is FieldInfo fieldInfo && fieldInfo.FieldType == typeof(LocString))
+                //Debug.Log("LocString fieldInfo: " + member.Name);
+                string valueStr = getFieldInfoValue(fieldInfo, type);
+                if (valueStr != null)
                 {
-                    //Debug.Log("LocString fieldInfo: " + member.Name);
-                    string valueStr = getFieldInfoValue(fieldInfo, type);
-                    if (valueStr != null)
-                    {
-                        poDict[typeName] = valueStr;
-                    }
+                    poDict[typeName] = valueStr;
                 }
-                //else if (member is PropertyInfo propertyInfo && propertyInfo.PropertyType == typeof(LocString))
-                //{
-                //    Debug.Log("LocString propertyInfo: " + member.Name);
-                //    var instance = Activator.CreateInstance(type);
-                //    poDict[typeName] = propertyInfo.GetValue(instance).ToString();
-                //}
             }
-
+            //else if (member is PropertyInfo propertyInfo && propertyInfo.PropertyType == typeof(LocString))
+            //{
+            //    Debug.Log("LocString propertyInfo: " + member.Name);
+            //    var instance = Activator.CreateInstance(type);
+            //    poDict[typeName] = propertyInfo.GetValue(instance).ToString();
+            //}
         }
 
-        // 递归遍历子类
-        foreach (var nestedType in type.GetNestedTypes())
+        if (type.GetNestedTypes() != null && type.GetNestedTypes().Length > 0)
         {
-            string typeName = parentTypeName+"."+nestedType.Name;
-            Traverse(nestedType, typeName, poDict);
+            // 递归遍历子类
+            foreach (var nestedType in type.GetNestedTypes())
+            {
+                string typeName = parentTypeName + "." + nestedType.Name;
+                Traverse(nestedType, typeName, poDict);
+            }
         }
 
         return type.GetNestedTypes().Length;
