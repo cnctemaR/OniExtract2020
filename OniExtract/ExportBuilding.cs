@@ -3,27 +3,21 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ExportBuilding : BaseExport
 {
     public override string ExportFileName { get; set; } = "building";
     public List<BuildingDef> buildingDefs;
     public List<BBuildingDef> bBuildingDefList;
-    public List<PlanScreen.PlanInfo> PlanOrder = TUNING.BUILDINGS.PLANORDER;
+    public List<BuildMenuCategory> buildMenuCategories = new List<BuildMenuCategory>();
+    public Dictionary<string, List<KeyValuePair<string, string>>> buildingAndSubcategoryDataPairs = new Dictionary<string, List<KeyValuePair<string, string>>>();
     public Dictionary<string, int> PlanOrderPairs = new Dictionary<string, int>();
 
     public ExportBuilding()
 	{
         buildingDefs = new List<BuildingDef>();
         bBuildingDefList = new List<BBuildingDef>();
-        foreach (var PlanOrder in TUNING.BUILDINGS.PLANORDER)
-        {
-            var key = HashCache.Get().Get(PlanOrder.category);
-            if (key != null)
-            {
-                PlanOrderPairs.Add(key, PlanOrder.category.HashValue);
-            }
-        }
     }
 
     public void AddNewBBuildingDef(BuildingDef buildingDef)
@@ -97,5 +91,22 @@ public class ExportBuilding : BaseExport
         }       
 
         this.bBuildingDefList.Add(bBuild);
+    }
+
+    public void ExportBuildMenu()
+    {
+        foreach (var planOrder in TUNING.BUILDINGS.PLANORDER)
+        {
+            if (this.buildMenuCategories.Count(b => b.category == planOrder.category.HashValue) == 0)
+            {
+                string categoryName = BuildMenuCategory.GetName(planOrder.category.HashValue);
+                this.buildMenuCategories.Add(new BuildMenuCategory(){
+                    category = planOrder.category.HashValue,
+                    categoryName = categoryName,
+                    categoryIcon = BuildMenuCategory.GetIcon(planOrder.category.HashValue)
+                });
+                this.buildingAndSubcategoryDataPairs[categoryName] = planOrder.buildingAndSubcategoryData;
+            }
+        }
     }
 }

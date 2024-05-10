@@ -428,6 +428,7 @@ namespace OniExtract2
             {
                 Debug.Log("OniExtract: " + "Export Buildings");
                 ExportBuilding export = new ExportBuilding();
+                export.ExportBuildMenu();
                 for (int indexBuilding = 0; indexBuilding < Assets.BuildingDefs.Count; ++indexBuilding)
                 {
                     var buildingDef = Assets.BuildingDefs[indexBuilding];
