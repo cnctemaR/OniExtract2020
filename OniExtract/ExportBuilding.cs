@@ -97,16 +97,15 @@ public class ExportBuilding : BaseExport
     {
         foreach (var planOrder in TUNING.BUILDINGS.PLANORDER)
         {
-            if (this.buildMenuCategories.Count(b => b.category == planOrder.category.HashValue) == 0)
+            string icon_name = PlanScreen.IconNameMap[planOrder.category];
+            string categoryName = HashCache.Get().Get(planOrder.category);
+            this.buildMenuCategories.Add(new BuildMenuCategory()
             {
-                string categoryName = BuildMenuCategory.GetName(planOrder.category.HashValue);
-                this.buildMenuCategories.Add(new BuildMenuCategory(){
-                    category = planOrder.category.HashValue,
-                    categoryName = categoryName,
-                    categoryIcon = BuildMenuCategory.GetIcon(planOrder.category.HashValue)
-                });
-                this.buildingAndSubcategoryDataPairs[categoryName] = planOrder.buildingAndSubcategoryData;
-            }
+                category = planOrder.category.HashValue,
+                categoryName = categoryName,
+                categoryIcon = icon_name
+            });
+            this.buildingAndSubcategoryDataPairs[categoryName] = planOrder.buildingAndSubcategoryData;
         }
     }
 }
