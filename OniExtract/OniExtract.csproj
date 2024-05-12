@@ -70,6 +70,7 @@
     <Compile Include="model\BElement.cs" />
     <Compile Include="model\BSpriteInfo.cs" />
     <Compile Include="model\BSpriteModifier.cs" />
+    <Compile Include="model\BUISprite.cs" />
     <Compile Include="model\BuildMenuCategory.cs" />
     <Compile Include="model\BVector2.cs" />
     <Compile Include="Export.cs" />

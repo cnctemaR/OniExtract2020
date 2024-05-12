@@ -438,6 +438,7 @@ namespace OniExtract2
                 Debug.Log("OniExtract: " + "Export Tags");
                 ExportTag exportTag = new ExportTag();
                 exportTag.AddAllGameTags();
+                exportTag.AddAllTextureInfo();
                 exportTag.ExportJsonFile();
             }
         }

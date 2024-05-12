@@ -1,7 +1,9 @@
 ﻿using OniExtract2;
+using OniExtract2.model;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 public class ExportTag : BaseExport
 {
@@ -10,6 +12,7 @@ public class ExportTag : BaseExport
     public List<Tag> RoomConstraintTags = RoomConstraints.ConstraintTags.AllTags;
     public OutGameTags mGameTags = new OutGameTags();
     public Dictionary<string, List<string>> prefabIDs = new Dictionary<string, List<string>>();
+    public Dictionary<string, BUISprite> uiSpriteInfos = new Dictionary<string, BUISprite>();
 
     public class OutGameTags
     {
@@ -62,6 +65,29 @@ public class ExportTag : BaseExport
             if (name != null)
             {
                 this.prefabIDs[name] = tags;
+            }
+        }
+    }
+    public void AddAllTextureInfo()
+    {
+        foreach (var prefab in Assets.Prefabs)
+        {
+            if (prefab == null || prefab.PrefabTag == null)
+            {
+                continue;
+            }
+            Tuple<Sprite, Color> tupleUISprite = null;
+            try
+            {
+                tupleUISprite = Def.GetUISprite(prefab.PrefabTag);
+            }catch (Exception e)
+            {
+                Debug.LogError("OniExtract: read "+prefab.PrefabTag.Name+" Failed.");
+            }
+            string name = prefab.PrefabTag.Name;
+            if (tupleUISprite != null && name != null)
+            {
+                uiSpriteInfos[prefab.PrefabTag.Name] = new BUISprite(tupleUISprite.first, tupleUISprite.second);
             }
         }
     }
