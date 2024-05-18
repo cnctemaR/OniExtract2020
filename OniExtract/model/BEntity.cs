@@ -116,7 +116,7 @@ namespace OniExtract2
         //public PrimaryElement primaryElement;
         //public InfoDescription infoDescription;
         //public Notifier notifier;
-        //public KBoxCollider2D kBoxCollider2D;
+        public BVector2 kBoxCollider2D;
         //public OccupyArea occupyArea;
         public OutDecorProvider decorProvider;
         //public Rotatable rotatable;

@@ -75,6 +75,11 @@ public class ExportEntity : BaseExport
                 bEntity.dlcIds.Add(dlcId);
             }
         }
+        KBoxCollider2D kBoxCollider2D = gameObject.GetComponent<KBoxCollider2D>();
+        if (kBoxCollider2D != null)
+        {
+            bEntity.kBoxCollider2D = new BVector2(kBoxCollider2D.size);
+        }
         TemperatureVulnerable tv = gameObject.GetComponent<TemperatureVulnerable>();
         if (tv != null)
         {
