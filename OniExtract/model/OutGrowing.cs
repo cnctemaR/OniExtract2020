@@ -11,16 +11,11 @@ namespace OniExtract2
     {
         public bool shouldGrowOld = true;
         public float maxAge = 2400f;
-        public float minRads;
-        public float maxRads;
 
         public OutGrowing(Growing tv)
         {
             this.shouldGrowOld = tv.shouldGrowOld;
             this.maxAge = tv.maxAge;
-            Modifiers component1 = tv.gameObject.GetComponent<Modifiers>();
-            this.minRads = component1.GetPreModifiedAttributeValue(Db.Get().PlantAttributes.MinRadiationThreshold);
-            this.maxRads = component1.GetPreModifiedAttributeValue(Db.Get().PlantAttributes.MaxRadiationThreshold);
         }
     }
 }

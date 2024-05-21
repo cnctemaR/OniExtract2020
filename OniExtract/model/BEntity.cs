@@ -119,6 +119,8 @@ namespace OniExtract2
         public BVector2 kBoxCollider2D;
         //public OccupyArea occupyArea;
         public OutDecorProvider decorProvider;
+        public OutDecorToggler decorToggler;
+        public OutWiltConditions wiltConditions;
         //public Rotatable rotatable;
         public OutPressureVulnerable pressureVulnerable;
         //public WiltCondition wiltCondition;
